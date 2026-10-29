@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <!-- тема сайта: ставится сразу, до отрисовки (светлая по умолчанию) -->
 <script>(function(){var DEFAULT_THEME='light'; /* ← ИЗМЕНИТЬ: 'light' или 'dark' — тема по умолчанию */ var t;try{t=localStorage.getItem('vlad-theme');}catch(e){}document.documentElement.setAttribute('data-vtheme',t==='dark'||t==='light'?t:DEFAULT_THEME);})();</script>
-<script>window.VLAD_SHOTS={padre:"img/padre.webp",ella:"img/elladevil.webp",syn:"img/synergy.webp"};</script>
+<script>window.VLAD_SHOTS={padre:"img/padre.webp",ella:"img/elladevil.webp",syn:"img/synergy.webp",happy:"img/happy-finance.webp",mareva:"img/mareva.webp"};</script>
 </head>
 <body>
 <!-- ==================================================================
@@ -1889,6 +1889,7 @@ html[data-vtheme="dark"] .vw{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
 .vw-hud-hint{display:inline-flex;align-items:center;gap:8px}
 .vw-hud-hint svg{animation:vw-nudge 1.6s ease-in-out infinite}
 @keyframes vw-nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.vw-concept{display:inline-flex;align-items:center;gap:6px;margin-left:8px;padding:3px 9px;border-radius:999px;border:1px dashed color-mix(in srgb,var(--ac) 55%,transparent);color:var(--ac);font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;vertical-align:2px}
 </style>
 
 <section class="vw" id="works" aria-label="Portfolio">
@@ -1925,14 +1926,14 @@ html[data-vtheme="dark"] .vw{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
     horizontal: true,                                // ← горизонтальная прокрутка на компьютере (true / false)
 
     uk: {                                                                         // ← ИЗМЕНИТЬ
-      label: 'Роботи', title: 'Вибрані', titleAccent: 'проєкти',
+      label: 'Роботи', title: 'Вибрані', titleAccent: 'проєкти', badges: { concept: 'Концепт', pitch: 'Конкурсна робота' },
       lead: 'Наведіть на проєкт — сайт прокрутиться просто у вікні. Натисніть, щоб відкрити живу версію.',
       cursor: 'Дивитися<br>сайт ↗', hint: 'Гортайте вниз',
       filters: { all: 'Всі', landing: 'Лендинги', site: 'Сайти', shop: 'Магазини' },
       cta: { small: 'Тут може бути ваш проєкт', big: 'Ваш сайт — наступний', button: 'Обговорити проєкт' }
     },
     en: {                                                                         // ← ИЗМЕНИТЬ
-      label: 'Work', title: 'Selected', titleAccent: 'projects',
+      label: 'Work', title: 'Selected', titleAccent: 'projects', badges: { concept: 'Concept', pitch: 'Pitch project' },
       lead: 'Hover over a project and the site scrolls right in the window. Click to open the live version.',
       cursor: 'View<br>site ↗', hint: 'Keep scrolling',
       filters: { all: 'All', landing: 'Landing pages', site: 'Websites', shop: 'Online stores' },
@@ -1956,7 +1957,20 @@ html[data-vtheme="dark"] .vw{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
         uk: { niche: 'Воротарські рукавиці', desc: 'Інтернет-магазин воротарських рукавиць: каталог моделей, порівняння, підбір розміру за 10 секунд, міні-гра зі знижкою та доставка.',
               tags: ['Інтернет-магазин', 'Підбір розміру', 'Гейміфікація'], result: '' },
         en: { niche: 'Goalkeeper gloves', desc: 'An online store for goalkeeper gloves: product catalog, comparison, a 10-second size finder, a discount mini-game and delivery.',
-              tags: ['Online store', 'Size finder', 'Gamification'], result: '' } }
+              tags: ['Online store', 'Size finder', 'Gamification'], result: '' } },
+
+      /* badge — метка на карточке: 'concept' (концепт) или 'pitch' (конкурсна робота для клієнта). Пусто — без метки */
+      { name: 'Mareva Dental', type: 'landing', url: 'mareva-dental', image: 'mareva', link: 'https://timoshes229-beep.github.io/mareva/', demo: 3, badge: 'concept',
+        uk: { niche: 'Стоматологія · Одеса', desc: 'Лендинг сімейної стоматології: 3D-модель імпланту, слайдер «до/після», калькулятор ціни з розстрочкою, квіз і міні-гра.',
+              tags: ['Лендинг', '3D-імплант', 'Калькулятор ціни'], result: '' },
+        en: { niche: 'Dental clinic · Odesa', desc: 'A family dental clinic landing page: an interactive 3D implant, before/after slider, price calculator with installments, a quiz and a mini-game.',
+              tags: ['Landing page', '3D implant', 'Price calculator'], result: '' } },
+
+      { name: 'Happy Finance', type: 'landing', url: 'happy-finance', image: 'happy', link: 'https://timoshes229-beep.github.io/HAPPY-FINANCE/', demo: 4, badge: 'pitch',   // ← после покупки клиентом поменяй на badge: ''
+        uk: { niche: 'Бухгалтерія для ФОП і ТОВ', desc: 'Лендинг бухгалтерської компанії: послуги для ФОП і ТОВ, експрес-перевірка ризиків з оцінкою 0–100, податковий календар із відліком до дедлайну.',
+              tags: ['Лендинг', 'Експрес-перевірка', 'Податковий календар'], result: '' },
+        en: { niche: 'Accounting for businesses', desc: 'An accounting firm landing page: services for sole proprietors and LLCs, a 0–100 risk check quiz and a tax calendar with a deadline countdown.',
+              tags: ['Landing page', 'Risk check', 'Tax calendar'], result: '' } }
     ]
   };
   /* ======================= дальше можно не трогать ======================= */
@@ -1999,7 +2013,15 @@ html[data-vtheme="dark"] .vw{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
     { logo: 'SYNERGY', tag: 'Synergy GK', title: 'SYNERGY<br>GK', h2: 'Каталог', h3: 'Популярне', cta: 'Перейти до каталогу',
       bg: '#f2f3f5', fg: '#14161a', ac: '#2f6bff', card: '#e1e4ea',
       img: 'radial-gradient(circle at 70% 30%,#2f6bff 0 15%,transparent 15.5%),linear-gradient(135deg,#dfe5f2,#f8f9fb)',
-      img2: 'linear-gradient(140deg,#2f6bff,#8fb0ff)' }
+      img2: 'linear-gradient(140deg,#2f6bff,#8fb0ff)' },
+    { logo: 'MAREVA', tag: 'Стоматологія · Одеса', title: 'MAREVA<br>DENTAL', h2: 'Послуги', h3: 'Лікарі', cta: 'Записатися',
+      bg: '#0d1f1c', fg: '#eef3ec', ac: '#c9a45c', card: '#183430',
+      img: 'radial-gradient(circle at 55% 45%,#c9a45c 0 14%,transparent 14.5%),linear-gradient(150deg,#1f3d38,#0d1f1c)',
+      img2: 'linear-gradient(140deg,#c9a45c,#5d7d70)' },
+    { logo: 'HAPPY FINANCE', tag: 'Бухгалтерія · Україна', title: 'ВАШ СПОКІЙ<br>У ЦИФРАХ', h2: 'Послуги', h3: 'Команда', cta: 'Консультація',
+      bg: '#f3f5fb', fg: '#102662', ac: '#102662', card: '#dfe5f4',
+      img: 'linear-gradient(0deg,#102662 0 10%,transparent 10% 22%,#3c5aa8 22% 40%,transparent 40% 52%,#8ea3d8 52% 72%,transparent 72%),linear-gradient(135deg,#e6ebf7,#f8f9fd)',
+      img2: 'linear-gradient(140deg,#102662,#5d78c4)' }
   ];
   function demoPage(d) {
     return '<div class="wf" style="--pbg:' + d.bg + ';--pfg:' + d.fg + ';--pac:' + d.ac + ';--pcard:' + d.card + ';--pimg:' + d.img + ';--pimg2:' + d.img2 + '">' +
@@ -2047,7 +2069,7 @@ html[data-vtheme="dark"] .vw{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
           '<div class="vw-screen"><div class="vw-page">' + inner + '</div></div>' +
         '</' + tag + '>' +
         '<div class="vw-info">' +
-          '<div class="vw-row"><div><h3 class="vw-name">' + p.name + '</h3><p class="vw-niche">' + t.niche + '</p></div>' +
+          '<div class="vw-row"><div><h3 class="vw-name">' + p.name + '</h3><p class="vw-niche">' + t.niche + (p.badge ? '<span class="vw-concept">' + ((T.badges || {})[p.badge] || p.badge) + '</span>' : '') + '</p></div>' +
             '<' + tag + ' class="vw-go' + (p.link ? '' : ' is-off') + '"' + attrs + ' aria-label="' + p.name + '">' + arrow + '</' + tag + '></div>' +
           '<p class="vw-desc">' + t.desc + '</p>' +
           (t.result ? '<p class="vw-result">' + t.result + '</p>' : '') +

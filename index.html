@@ -932,9 +932,10 @@ radial-gradient(35% 30% at 6% 40%,rgba(106,61,255,.22),transparent 70%),linear-g
 background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 .vl-word{position:absolute;left:50%;top:14cqh;transform:translateX(-50%);font-family:'Unbounded',sans-serif;font-weight:800;font-size:min(19cqw,33cqh);line-height:.8;letter-spacing:-.06em;white-space:nowrap}
 .vl-word i{font-style:normal;color:#6a3dff}
-.vl-arch{position:absolute;left:50%;bottom:0;z-index:2;transform:translateX(-50%);width:min(30cqw,50cqh);height:64cqh;border-radius:999px 999px 0 0;
-display:grid;place-items:end center;padding-bottom:11cqh;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.3);border-bottom:0;
--webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 -30px 80px -30px rgba(20,8,90,.5)}
+.vl-hero{position:absolute;left:50%;top:56cqh;z-index:2;width:min(46cqw,74cqh);aspect-ratio:1;transform:translate(-50%,-50%);mix-blend-mode:lighten;pointer-events:none}
+.vl-hero img{display:block;width:100%;height:100%;object-fit:cover;animation:vl-hfloat 7s ease-in-out infinite;
+-webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
+@keyframes vl-hfloat{50%{transform:translateY(-1.6cqh)}}
 .vl-photo{position:absolute;left:50%;bottom:0;z-index:2;height:88cqh;width:auto;max-width:none;transform:translateX(-50%);filter:drop-shadow(0 30px 50px rgba(20,8,90,.45))}
 .vl-script{position:absolute;right:5cqw;top:46cqh;z-index:4;font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:min(6cqw,10cqh);
 color:var(--hi);white-space:nowrap;transform:rotate(-8deg);text-shadow:0 8px 30px rgba(30,10,90,.35)}
@@ -961,11 +962,8 @@ transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s,border-color .3
 .vl-facts{position:absolute;right:4cqw;bottom:7cqh;z-index:5;display:grid;gap:12px}
 .vl-facts li{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:rgba(255,255,255,.82)}
 .vl-facts svg{flex:none;width:22px;height:22px;padding:5px;border-radius:50%;color:#fff;background:rgba(143,107,255,.35)}
-.vl-hint{position:absolute;left:50%;bottom:4cqh;z-index:5;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;width:min(24cqw,280px);
+.vl-hint{position:absolute;left:50%;bottom:3cqh;z-index:5;transform:translateX(-50%);width:min(24cqw,280px);
 font-size:11.5px;font-weight:700;letter-spacing:.12em;line-height:1.5;text-transform:uppercase;text-align:center;color:rgba(255,255,255,.8)}
-.vl-mouse{position:relative;width:24px;height:38px;border:2px solid rgba(255,255,255,.75);border-radius:14px}
-.vl-mouse::after{content:'';position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:vl-wheel 1.6s ease-in-out infinite}
-@keyframes vl-wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(10px);opacity:0}100%{opacity:0}}
 
 /* летающий курсор (живёт поверх страницы, не внутри блока) */
 .vl-fly{position:fixed;left:0;top:0;z-index:40;width:0;height:0;pointer-events:none;opacity:0;transition:opacity .5s;will-change:transform}
@@ -1037,7 +1035,7 @@ transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 /* телефон */
 .vl.is-mob .vl-word{top:12cqh;font-size:18cqw}
 .vl.is-mob .vl-script{right:7cqw;top:19.5cqh;font-size:7.5cqw}
-.vl.is-mob .vl-arch{width:58cqw;height:66cqh}
+.vl.is-mob .vl-hero{top:38cqh;width:84cqw}
 .vl.is-mob .vl-photo{height:62cqh}
 .vl.is-mob .vl-pitch{left:5cqw;right:5cqw;width:auto;bottom:3.5cqh}
 .vl.is-mob .vl-status{font-size:12px}
@@ -1059,7 +1057,7 @@ transition:transform .3s cubic-bezier(.2,.8,.2,1)}
       <div class="vl-bg" aria-hidden="true"></div>
       <div class="vl-view">
         <div class="vl-word" aria-hidden="true"></div>
-        <div class="vl-arch" aria-hidden="true"></div>
+        <div class="vl-hero" aria-hidden="true"><img alt=""></div>
         <div class="vl-script" aria-hidden="true"></div>
         <div class="vl-pitch">
           <span class="vl-status"><span class="vl-dot"></span><span class="vl-t-status"></span></span>
@@ -1071,7 +1069,7 @@ transition:transform .3s cubic-bezier(.2,.8,.2,1)}
           </div>
         </div>
         <ul class="vl-facts"></ul>
-        <div class="vl-hint" aria-hidden="true"><span class="vl-mouse"></span><span class="vl-t-hint"></span></div>
+        <div class="vl-hint" aria-hidden="true"><span class="vl-t-hint"></span></div>
       </div>
       <div class="vl-laptop">
         <div class="vl-screen"><div class="vl-works"></div><span class="vl-open"></span></div>
@@ -1097,8 +1095,9 @@ transition:transform .3s cubic-bezier(.2,.8,.2,1)}
   var CONFIG = {
     word: 'VLAD', accent: '.',                       // ← ИЗМЕНИТЬ: большое слово на обложке
     telegram: 'https://t.me/Tim1949',                // ← ИЗМЕНИТЬ: главная кнопка
-    photo: '',                                       // ← ИЗМЕНИТЬ: фото БЕЗ ФОНА (PNG/WebP с прозрачностью), например 'img/vlad.webp' — встаёт в арку
-    cursor: 'img/cursor.webp',                       // ← ИЗМЕНИТЬ: летающий 3D-курсор. Пусто — без курсора
+    image: 'img/hero-1.webp',                        // ← ИЗМЕНИТЬ: картинка по центру обложки (на тёмном фоне — чёрное станет прозрачным)
+    photo: '',                                       // ← ИЗМЕНИТЬ: фото БЕЗ ФОНА (PNG/WebP с прозрачностью), например 'img/vlad.webp' — встаёт вместо картинки
+    cursor: '',                                      // ← ИЗМЕНИТЬ: летающий 3D-курсор, например 'img/cursor.webp'. Пусто — без курсора
     pin: 5,                                          // длина блока в экранах прокрутки (больше — медленнее)
 
     uk: {                                                                         // ← ИЗМЕНИТЬ
@@ -1107,7 +1106,7 @@ transition:transform .3s cubic-bezier(.2,.8,.2,1)}
       sub: 'Лендинги, багатосторінкові сайти та інтернет-магазини з дизайном під ваш бренд. Красиво, швидко й ідеально на телефоні.',
       main: 'Обговорити проєкт', second: 'Дивитися роботи',
       facts: ['Дизайн під бренд, не шаблон', 'Адаптив під будь-який телефон', 'Прямий контакт без менеджерів'],
-      hint: 'Гортайте — сайт сховається в ноутбук', cta: 'Усі роботи', open: 'Відкрити сайт ↗'
+      hint: 'Гортайте — сайт сховається в ноутбук ↓', cta: 'Усі роботи', open: 'Відкрити сайт ↗'
     },
     en: {                                                                         // ← ИЗМЕНИТЬ
       script: 'webdesign7', edit: 'Vlad is editing', status: 'Available for new projects',
@@ -1115,7 +1114,7 @@ transition:transform .3s cubic-bezier(.2,.8,.2,1)}
       sub: 'Landing pages, multi-page websites and online stores designed around your brand. Beautiful, fast and perfect on mobile.',
       main: 'Discuss a project', second: 'See my work',
       facts: ['Custom design, no templates', 'Perfect on any phone', 'Direct contact, no managers'],
-      hint: 'Scroll — this site slides into a laptop', cta: 'All projects', open: 'Open site ↗'
+      hint: 'Scroll — this site slides into a laptop ↓', cta: 'All projects', open: 'Open site ↗'
     },
 
     /* Работы на экране ноутбука. image — ключ из VLAD_SHOTS (или ссылка на длинный скриншот). */
@@ -1144,8 +1143,9 @@ transition:transform .3s cubic-bezier(.2,.8,.2,1)}
   q('.vl-btn--main').href = CONFIG.telegram;
   if (CONFIG.photo) {
     var ph = new Image(); ph.className = 'vl-photo'; ph.src = CONFIG.photo; ph.alt = '';
-    q('.vl-arch').insertAdjacentElement('afterend', ph);
-  }
+    q('.vl-hero').replaceWith(ph);
+  } else if (CONFIG.image) q('.vl-hero img').src = CONFIG.image;
+  else q('.vl-hero').remove();
 
   /* клавиатура ноутбука */
   var keys = '';
@@ -1668,7 +1668,7 @@ html[data-vtheme="dark"] .vk{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
 .vk-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
 .vk-wi{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
 .vk-title.is-in .vk-wi{transform:none}
-.vk-acc{color:var(--ac)}
+.vk-acc{color:var(--ac);font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em}
 .vk-lead{max-width:440px;font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:var(--muted)}
 
 /* рабочая область */
@@ -1850,12 +1850,12 @@ html[data-vtheme="dark"] .vk{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
         <div class="vk-grp" data-g="style"><div class="vk-grp-h"><b><i>2</i><span class="vk-g2"></span></b></div><div class="vk-chips vk-styles"></div></div>
         <div class="vk-grp" data-g="color"><div class="vk-grp-h"><b><i>3</i><span class="vk-g3"></span></b></div><div class="vk-sw"></div></div>
         <div class="vk-tools">
-          <button type="button" class="vk-tool vk-dice"><span class="vk-die">🎲</span><span class="vk-dice-t"></span></button>
+          <button type="button" class="vk-tool vk-dice"><span class="vk-die">↻</span><span class="vk-dice-t"></span></button>
           <button type="button" class="vk-tool vk-dev is-on" data-dev="desktop" aria-label="Desktop"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></button>
           <button type="button" class="vk-tool vk-dev" data-dev="mobile" aria-label="Mobile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></button>
         </div>
         <div class="vk-result">
-          <div class="vk-timer">⏱ <span class="vk-timer-t"></span> <b>0,0</b></div>
+          <div class="vk-timer"><span class="vk-timer-t"></span> <b>0,0</b></div>
           <p class="vk-sum"></p>
           <a class="vk-cta" target="_blank" rel="noopener"><span class="vk-cta-t"></span><span class="vk-cta-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
         </div>
@@ -1983,7 +1983,7 @@ html[data-vtheme="dark"] .vk{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
     q('.vk-dice-t').textContent = T.dice;
     q('.vk-cta-t').textContent = T.cta;
     q('.vk-niches').innerHTML = CONFIG.niches.map(function (nn, i) {
-      var t = nn[lang] || nn.uk; return '<button type="button" class="vk-chip' + (i === state.niche ? ' is-on' : '') + '" data-k="niche" data-v="' + i + '"><em>' + nn.emoji + '</em>' + t.name + '</button>';
+      var t = nn[lang] || nn.uk; return '<button type="button" class="vk-chip' + (i === state.niche ? ' is-on' : '') + '" data-k="niche" data-v="' + i + '">' + t.name + '</button>';
     }).join('');
     q('.vk-styles').innerHTML = CONFIG.styles.map(function (s, i) {
       return '<button type="button" class="vk-chip' + (i === state.style ? ' is-on' : '') + '" data-k="style" data-v="' + i + '">' + T.styles[s] + '</button>';
@@ -2003,7 +2003,7 @@ html[data-vtheme="dark"] .vk{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
     site.style.setProperty('--s-on', isDark(sw.c) ? '#ffffff' : '#0b0b0d');
     view.style.setProperty('--sac', sw.c);
     root.style.setProperty('--sac', sw.c);
-    q('.vk-url').innerHTML = '🔒 ' + nn.domain;
+    q('.vk-url').innerHTML = nn.domain;
     site.innerHTML =
       '<div class="s-nav"><b class="s-logo">' + nn.logo + '<i>.</i></b>' + t.nav.map(function (x) { return '<span>' + x + '</span>'; }).join('') + '<em>' + t.cta + '</em></div>' +
       '<div class="s-hero"><div><span class="s-tag">' + t.name + '</span><h3 class="s-h">' + t.h + '</h3><p class="s-p">' + t.p + '</p>' +
@@ -2116,7 +2116,7 @@ html[data-vtheme="dark"] .vw{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
 .vw-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
 .vw-wi{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
 .vw-title.is-in .vw-wi{transform:none}
-.vw-acc{color:var(--ac)}
+.vw-acc{color:var(--ac);font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em}
 .vw-count{display:inline-block;vertical-align:top;margin-left:6px;font-size:.32em;font-weight:500;letter-spacing:0;color:var(--muted);transform:translateY(.35em)}
 .vw-lead{max-width:440px;font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:var(--muted)}
 
@@ -2619,7 +2619,7 @@ html[data-vtheme="dark"] .vp{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
 .vp-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
 .vp-wi{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
 .vp-title.is-in .vp-wi{transform:none}
-.vp-acc{color:var(--ac)}
+.vp-acc{color:var(--ac);font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em}
 .vp-lead{margin-top:22px;max-width:440px;font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:var(--muted)}
 
 .vp-counter{display:flex;align-items:flex-end;gap:14px;margin-top:48px}
@@ -2917,7 +2917,7 @@ html[data-vtheme="dark"] .va{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
 .va-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
 .va-wi{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
 .va-title.is-in .va-wi{transform:none}
-.va-acc{color:var(--ac)}
+.va-acc{color:var(--ac);font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em}
 .va-lead{max-width:440px;font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:var(--muted)}
 
 /* бенто-сетка */
@@ -3028,10 +3028,10 @@ html[data-vtheme="dark"] .va{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
      Тексты — в двух языках: uk и en. Цвета — в начале <style>.
      ================================================================= */
   var CONFIG = {
-    photo: '',                                       // ← ИЗМЕНИТЬ: ссылка на твоё фото (квадратное). Пусто — буква в фигуре
+    photo: 'img/hero-1.webp',                        // ← ИЗМЕНИТЬ: ссылка на твоё фото (квадратное). Пусто — буква в фигуре
     tools: ['Tilda', 'HTML / CSS / JS', 'GitHub Pages', 'Netlify'],  // ← ИЗМЕНИТЬ: общие для обоих языков инструменты
     /* Счётчики: value — число (докручивается), suffix — после числа. Подписи — в uk / en. */
-    stats: [ { value: 1, suffix: '' }, { value: 100, suffix: '%' }, { value: 0, suffix: '' }, { value: 24, suffix: '/7' } ],
+    stats: [ { value: 1, suffix: '' }, { value: 100, suffix: '%' }, { value: 5, suffix: '' }, { value: 24, suffix: '/7' } ],
     icons: ['person', 'brand', 'phone', 'edit', 'speed', 'steps'],   // иконки преимуществ по порядку
 
     uk: {                                                                         // ← ИЗМЕНИТЬ
@@ -3041,7 +3041,7 @@ html[data-vtheme="dark"] .va{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
       hi: 'Привіт, я', name: 'Влад', role: 'Веб-розробник',
       bio: 'Роблю сайти для малого бізнесу й брендів — від лендингів до інтернет-магазинів. Мені важливо, щоб сайт не просто гарно виглядав, а приводив клієнтів і ним було зручно користуватися з телефона.',
       tools: ['Анімації', 'Адаптив'],
-      stats: ['людина на весь проєкт — без менеджерів і посередників', 'сайтів адаптовано під телефон', 'готових шаблонів — дизайн під ваш бренд', 'ваш сайт приймає заявки'],
+      stats: ['людина на весь проєкт — без менеджерів і посередників', 'сайтів адаптовано під телефон', 'проєктів у портфоліо — від лендингу до магазину', 'ваш сайт приймає заявки'],
       advantages: [
         { title: 'Працюєте напряму зі мною', text: 'Без менеджерів і зіпсованого телефону. Швидкі відповіді в Telegram.' },
         { title: 'Дизайн під бренд', text: 'Унікальний перший екран і стиль під вашу нішу, а не шаблон, як у всіх.' },
@@ -3058,7 +3058,7 @@ html[data-vtheme="dark"] .va{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
       hi: 'Hi, I’m', name: 'Vlad', role: 'Web developer',
       bio: 'I build websites for small businesses and brands — from landing pages to online stores. I care that a site doesn’t just look good, but brings in clients and is easy to use on a phone.',
       tools: ['Animations', 'Responsive'],
-      stats: ['person on the whole project — no managers or middlemen', 'of my sites are fully responsive', 'ready-made templates — design built for your brand', 'your site collects leads'],
+      stats: ['person on the whole project — no managers or middlemen', 'of my sites are fully responsive', 'projects in my portfolio — from landing pages to stores', 'your site collects leads'],
       advantages: [
         { title: 'Work with me directly', text: 'No managers, no broken telephone. Quick replies on Telegram.' },
         { title: 'Design for your brand', text: 'A unique first screen and style for your niche — not the same template as everyone else.' },
@@ -3129,7 +3129,6 @@ html[data-vtheme="dark"] .va{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
         '<svg class="va-ring" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="vaCircle" d="M110,110 m-100,0 a100,100 0 1,1 200,0 a100,100 0 1,1 -200,0"/></defs>' +
         '<text font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="currentColor"><textPath href="#vaCircle" textLength="626" lengthAdjust="spacing">' + T.ring + '</textPath></text></svg>' +
         '<div class="va-blob">' + (CONFIG.photo ? '<img src="' + CONFIG.photo + '" alt="' + T.name + '">' : '<span class="va-initial">' + T.initial + '</span>') + '</div>' +
-        '<span class="va-hand" aria-hidden="true">👋</span>' +
       '</div>' +
       '<div><p class="va-hi">' + T.hi + '</p><p class="va-name">' + T.name + '</p><p class="va-role">' + T.role + '</p>' +
         '<p class="va-bio">' + T.bio + '</p>' +
@@ -3221,7 +3220,7 @@ html[data-vtheme="dark"] .vc{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
 .vc-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
 .vc-wi{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
 .vc-title.is-in .vc-wi{transform:none}
-.vc-acc{color:var(--ac)}
+.vc-acc{color:var(--ac);font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em}
 .vc-lead{max-width:440px;font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:var(--muted)}
 
 /* пакеты */
@@ -3677,7 +3676,7 @@ html[data-vtheme="dark"] .vr{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
 .vr-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
 .vr-wi{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
 .vr-title.is-in .vr-wi{transform:none}
-.vr-acc{color:var(--ac)}
+.vr-acc{color:var(--ac);font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em}
 .vr-arrows{display:flex;gap:10px;flex:none}
 .vr-arrow{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;border:1px solid var(--bd);background:none;cursor:pointer;
   transition:background .25s,color .25s,border-color .25s,opacity .25s}
@@ -3862,6 +3861,8 @@ html[data-vtheme="dark"] .vr{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
 
   var root = document.getElementById('reviews');
   if (!root) return;
+  /* пока все отзывы — заготовки (template: true), блок скрыт. Появится сам, как только будет хоть один настоящий */
+  if (CONFIG.reviews.every(function (r) { return r.template; })) { root.style.display = 'none'; return; }
   var q = function (s) { return root.querySelector(s); };
   var lang = VL.lang;
 
@@ -4023,7 +4024,7 @@ html[data-vtheme="dark"] .vq{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
 .vq-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
 .vq-wi{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
 .vq-title.is-in .vq-wi{transform:none}
-.vq-acc{color:var(--ac)}
+.vq-acc{color:var(--ac);font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em}
 .vq-lead{margin-top:22px;max-width:420px;font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:var(--muted)}
 
 .vq-help{position:relative;margin-top:40px;max-width:420px;padding:28px;border-radius:24px;background:var(--card);border:1px solid var(--line);overflow:hidden}
@@ -4339,7 +4340,7 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
 .vf-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
 .vf-wi{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
 .vf-title.is-in .vf-wi{transform:none}
-.vf-acc{color:var(--ac)}
+.vf-acc{color:var(--ac);font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em}
 .vf-lead{margin-top:24px;max-width:460px;font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--muted)}
 
 .vf-contacts{display:grid;gap:10px;margin-top:40px;max-width:480px}
@@ -4564,7 +4565,7 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
     tgName:    '@Tim1949',                     // ← ИЗМЕНИТЬ: как показывать ник
     whatsapp:  '',                                   // ← например 'https://wa.me/380XXXXXXXXX'
     viber:     '',                                   // ← например 'viber://chat?number=%2B380XXXXXXXXX'
-    instagram: '',                                   // ← например 'https://instagram.com/username'
+    instagram: 'https://www.instagram.com/vlad.webdesign7/',   // ← например 'https://instagram.com/username'
     email:     '',                                   // ← например 'vlad@gmail.com'
     phone:     '',                                   // ← например '+380 XX XXX XX XX'
     privacyLink: '',                                 // ← ссылка на политику конфиденциальности (можно пусто)
@@ -4592,16 +4593,16 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
         okTitle: 'Заявку майже надіслано!',
         okText: 'Натисніть «Відкрити Telegram» — повідомлення підставиться автоматично. Якщо ні, воно вже скопійоване: просто вставте й надішліть.',
         okTg: 'Відкрити Telegram', okCopy: 'Скопіювати', okCopied: 'Скопійовано ✓', okAgain: 'Змінити',
-        okGame: '🎮 Поки чекаєте на відповідь — зловіть кілька багів',
+        okGame: 'Поки чекаєте на відповідь — зловіть кілька багів',
         msgTitle: 'Привіт, Влад! Хочу обговорити сайт.', needMsg: 'Що потрібно', aboutMsg: 'Про проєкт', nameMsg: 'Ім’я', contactMsg: 'Контакт'
       },
       menu: [ { text: 'Послуги', link: '#services' }, { text: 'Конструктор', link: '#builder' }, { text: 'Роботи', link: '#works' }, { text: 'Процес', link: '#process' },
-              { text: 'Про мене', link: '#about' }, { text: 'Ціни', link: '#prices' }, { text: 'Відгуки', link: '#reviews' }, { text: 'FAQ', link: '#faq' } ],
+              { text: 'Про мене', link: '#about' }, { text: 'Ціни', link: '#prices' }, { text: 'FAQ', link: '#faq' } ],
       copyright: 'Влад · Веб-розробник', up: 'Нагору', privacyName: 'Політика конфіденційності',
-      gameBtn: '🎮 Злови баги', floatingTip: 'Написати мені',
+      gameBtn: 'Злови баги', floatingTip: 'Написати мені',
       game: { title: 'Злови баги 🐛', hint: 'Клікайте по багах, поки вони не втекли із сайту! Золотий баг — це +3.', start: 'Почати', score: 'Баги', time: 'Час', best: 'Рекорд',
               again: 'Ще раз', result: 'Ви зловили {n} {w}!', record: 'Новий рекорд! 🏆', bestWas: 'Ваш рекорд: {n}',
-              text: 'Так само я ловлю баги у ваших сайтах — ще до запуску 😉', cta: 'Обговорити мій сайт', close: 'Закрити', words: ['баг', 'баги', 'багів'] }
+              text: 'Так само я ловлю баги у ваших сайтах — ще до запуску.', cta: 'Обговорити мій сайт', close: 'Закрити', words: ['баг', 'баги', 'багів'] }
     },
     en: {                                                                         // ← ИЗМЕНИТЬ
       bigText: ['Let’s', 'build', 'your website'],
@@ -4618,16 +4619,16 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
         okTitle: 'Almost sent!',
         okText: 'Click “Open Telegram” and the message will be filled in automatically. If not, it’s already copied — just paste and send.',
         okTg: 'Open Telegram', okCopy: 'Copy', okCopied: 'Copied ✓', okAgain: 'Edit',
-        okGame: '🎮 While you wait for a reply — catch some bugs',
+        okGame: 'While you wait for a reply — catch some bugs',
         msgTitle: 'Hi Vlad! I’d like to discuss a website.', needMsg: 'What I need', aboutMsg: 'About the project', nameMsg: 'Name', contactMsg: 'Contact'
       },
       menu: [ { text: 'Services', link: '#services' }, { text: 'Builder', link: '#builder' }, { text: 'Work', link: '#works' }, { text: 'Process', link: '#process' },
-              { text: 'About', link: '#about' }, { text: 'Pricing', link: '#prices' }, { text: 'Reviews', link: '#reviews' }, { text: 'FAQ', link: '#faq' } ],
+              { text: 'About', link: '#about' }, { text: 'Pricing', link: '#prices' }, { text: 'FAQ', link: '#faq' } ],
       copyright: 'Vlad · Web developer', up: 'Back to top', privacyName: 'Privacy policy',
-      gameBtn: '🎮 Catch the bugs', floatingTip: 'Message me',
+      gameBtn: 'Catch the bugs', floatingTip: 'Message me',
       game: { title: 'Catch the bugs 🐛', hint: 'Click the bugs before they escape from the website! A golden bug is worth +3.', start: 'Start', score: 'Bugs', time: 'Time', best: 'Best',
               again: 'Play again', result: 'You caught {n} {w}!', record: 'New record! 🏆', bestWas: 'Your best: {n}',
-              text: 'That’s how I catch bugs in your website — before launch 😉', cta: 'Discuss my website', close: 'Close', words: ['bug', 'bugs', 'bugs'] }
+              text: 'That’s how I catch bugs in your website — before launch.', cta: 'Discuss my website', close: 'Close', words: ['bug', 'bugs', 'bugs'] }
     }
   };
   /* ======================= дальше можно не трогать ======================= */

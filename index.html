@@ -1460,152 +1460,78 @@ html.cv-light #vh-hero{--fg:#15121f;--muted:#4a4560;--line:rgba(21,18,31,.14);--
 </script>
 <!-- ==================================================================
      ВЛАД · БЛОК 2 «УСЛУГИ» — для Tilda, блок T123 «HTML-код»
-     Витрина: плитки разного размера с живыми мини-превью и ценой «від».
-     В центральную плитку «Сайти під ключ» прилетает хромовая «v» с обложки.
+     Слева список услуг с ценами, справа ноутбук и телефон с примером.
+     Вкладки переключаются сами (каждые 4,5 с) или по клику.
      Все тексты, цены и картинки меняются в CONFIG в начале <script>.
      Ищи пометки  ← ИЗМЕНИТЬ
      Якорь блока: #services
      ================================================================== -->
 <style>
-.vb{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6bff;--ac0:#6a3dff;--card:#15111f;--card2:#1b1528;--line:rgba(241,238,255,.09);--mk:rgba(241,238,255,.1);
-position:relative;padding:120px 32px 110px;background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
-.vb *,.vb *::before,.vb *::after{box-sizing:border-box;margin:0;padding:0}
-.vb a{color:inherit;text-decoration:none}
-.vb::before{content:'';position:absolute;left:50%;top:0;width:min(1100px,90vw);height:520px;transform:translateX(-50%);pointer-events:none;
-background:radial-gradient(closest-side,rgba(106,61,255,.22),transparent)}
-.vb-in{position:relative;max-width:1320px;margin:0 auto}
-.vb-head{display:grid;grid-template-columns:1fr minmax(0,420px);align-items:end;gap:20px 60px;margin-bottom:44px}
-.vb-label{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
-.vb-label::before{content:'';width:26px;height:2px;background:currentColor}
-.vb-title{margin-top:14px;font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,3.8vw,58px);line-height:1.04;letter-spacing:-.035em}
-.vb-title em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em;color:var(--ac)}
-.vb-lead{font-size:16px;line-height:1.6;color:var(--muted)}
-.vb-lead b{color:var(--fg)}
-
-/* сетка-витрина */
-.vb-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(250px,auto);gap:16px;
-grid-template-areas:"land land key multi" "land land key shop" "card pres bot seo"}
-.vb-t{position:relative;display:flex;flex-direction:column;min-width:0;overflow:hidden;border-radius:22px;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);
-opacity:0;transform:translateY(30px);transition:opacity .8s ease var(--d,0s),transform .9s cubic-bezier(.2,.8,.2,1) var(--d,0s),border-color .4s}
-.vb.is-in .vb-t{opacity:1;transform:none}
-.vb-t:hover{border-color:rgba(143,107,255,.45)}
-.vb-vis{position:relative;flex:1;min-height:140px;overflow:hidden}
-.vb-txt{position:relative;padding:18px 20px 20px}
-.vb-txt h3{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.2}
-.vb-txt p{margin-top:6px;font-size:14px;line-height:1.5;color:var(--muted)}
-.vb-price{position:absolute;right:16px;top:16px;z-index:3;padding:6px 12px;border-radius:999px;background:rgba(14,11,22,.78);border:1px solid rgba(255,255,255,.14);
--webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:13px;font-weight:800;white-space:nowrap}
-.vb-price i{font-style:normal;font-weight:600;color:var(--muted)}
-.vb-t--land{grid-area:land}.vb-t--key{grid-area:key}.vb-t--multi{grid-area:multi}.vb-t--shop{grid-area:shop}
-.vb-t--card{grid-area:card}.vb-t--pres{grid-area:pres}.vb-t--bot{grid-area:bot}.vb-t--seo{grid-area:seo}
-
-/* мини-окно браузера */
-.vb-win{position:absolute;border-radius:12px;overflow:hidden;background:#0b0912;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
-.vb-win b{display:flex;align-items:center;gap:5px;height:24px;padding:0 10px;background:#141020}
-.vb-win b i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.22)}
-.vb-win img{display:block;width:100%;transition:transform 6s cubic-bezier(.45,0,.2,1)}
-.vb-t:hover .vb-win img{transform:translateY(calc(-100% + var(--wh,200px)))}
-.vb-t--land .vb-win{left:24px;right:24px;top:24px;bottom:-24px;--wh:400px}
-.vb-t--land .vb-phone{position:absolute;right:30px;bottom:-30px;width:24%;aspect-ratio:9/19;border-radius:22px;border:5px solid #050507;overflow:hidden;box-shadow:0 30px 60px -10px #000;z-index:2}
-.vb-t--land .vb-phone img{display:block;width:100%;animation:vb-scr 14s cubic-bezier(.65,0,.35,1) infinite}
-@keyframes vb-scr{0%,12%{transform:translateY(0)}50%,62%{transform:translateY(-58%)}96%,100%{transform:translateY(0)}}
-.vb-t--multi .vb-win,.vb-t--shop .vb-win{left:18px;right:18px;top:18px;bottom:-30px;--wh:180px}
-
-/* «Под ключ» — место для «v» */
-.vb-t--key{background:radial-gradient(80% 60% at 50% 34%,rgba(106,61,255,.35),transparent 70%),linear-gradient(180deg,var(--card2),var(--card));border-color:rgba(143,107,255,.35)}
-.vb-spot{position:relative;flex:1;display:grid;place-items:center;min-height:240px}
-.vb-orbit{position:absolute;width:78%;aspect-ratio:1;border-radius:50%;border:1px dashed rgba(185,165,255,.3);animation:vb-spin 40s linear infinite}
-.vb-orbit::after{content:'';position:absolute;left:50%;top:-4px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--ac);box-shadow:0 0 14px var(--ac)}
-@keyframes vb-spin{to{transform:rotate(360deg)}}
-.vb-land{position:relative;width:62%;aspect-ratio:1}
-html:not(.has-vfly) .vb-land{background:url(img/hero-1.webp) center/cover;mix-blend-mode:lighten;
--webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
-.vb-key-tag{position:absolute;left:18px;top:18px;padding:6px 12px;border-radius:999px;background:var(--ac0);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.vb-t--key h3{font-size:clamp(20px,1.7vw,26px)}
-.vb-cta{display:flex;align-items:center;justify-content:space-between;height:50px;margin-top:16px;padding:0 6px 0 20px;border-radius:999px;background:var(--ac0);font-size:14.5px;font-weight:700;
-transition:background .3s}
-.vb-cta:hover{background:#7a52ff}
-.vb-cta i{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#fff;color:var(--ac0);font-style:normal;transition:transform .4s}
-.vb-cta:hover i{transform:rotate(-45deg)}
-
-/* визитка: телефон с личной страницей */
-.vb-card{position:absolute;left:50%;top:22px;width:46%;max-width:150px;aspect-ratio:9/16;transform:translateX(-50%) rotate(-6deg);border-radius:20px;border:4px solid #050507;
-background:linear-gradient(180deg,#2a1d55,#120d22);padding:16% 12%;display:grid;align-content:start;justify-items:center;gap:8%;box-shadow:0 30px 50px -14px #000;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.vb-t:hover .vb-card{transform:translateX(-50%) rotate(0) translateY(-6px)}
-.vb-card i{width:34%;aspect-ratio:1;border-radius:50%;background:linear-gradient(135deg,#b9a5ff,#6a3dff)}
-.vb-card s{width:70%;height:7px;border-radius:4px;background:rgba(255,255,255,.5)}
-.vb-card u{width:100%;height:16%;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14)}
-.vb-card u:nth-of-type(1){background:var(--ac0);border-color:var(--ac0)}
-/* презентация: слайды */
-.vb-slide{position:absolute;left:20px;right:20px;top:24px;aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#1f1640,#0f0b1c);border:1px solid rgba(255,255,255,.12);
-padding:8%;display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:end;box-shadow:0 30px 50px -14px #000}
-.vb-slide>div:first-child{display:grid;gap:10px;align-self:center}
-.vb-slide s{display:block;height:9px;border-radius:5px;background:rgba(255,255,255,.55)}
-.vb-slide s+s{width:70%;background:rgba(255,255,255,.25)}
-.vb-bars{display:flex;align-items:flex-end;gap:8%;height:70%}
-.vb-bars i{flex:1;border-radius:4px 4px 0 0;background:var(--ac);height:var(--h);transform-origin:bottom;animation:vb-grow 3s ease-in-out infinite alternate}
-.vb-bars i:nth-child(2){animation-delay:.3s}.vb-bars i:nth-child(3){animation-delay:.6s}
-@keyframes vb-grow{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
-.vb-dots{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;gap:6px}
-.vb-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25)}
-.vb-dots i:first-child{width:18px;border-radius:3px;background:var(--ac)}
-/* бот: чат с кнопками */
-.vb-chat{position:absolute;left:18px;right:18px;top:20px;display:grid;gap:8px;font-size:12.5px;line-height:1.35}
-.vb-chat p{max-width:82%;padding:8px 11px;border-radius:12px;opacity:0;transform:translateY(8px)}
-.vb.is-in .vb-chat p{animation:vb-msg .5s ease forwards}
-.vb-chat .u{justify-self:end;background:var(--ac0);border-bottom-right-radius:4px;animation-delay:.6s!important}
-.vb-chat .b{background:#2a2438;border-bottom-left-radius:4px;animation-delay:1.4s!important}
-.vb-chat .k{display:grid;grid-template-columns:1fr 1fr;gap:6px;opacity:0}
-.vb.is-in .vb-chat .k{animation:vb-msg .5s ease 2.1s forwards}
-.vb-chat .k span{padding:7px;border-radius:8px;background:rgba(143,107,255,.18);border:1px solid rgba(143,107,255,.4);text-align:center;font-weight:700;font-size:12px}
-@keyframes vb-msg{to{opacity:1;transform:none}}
-/* SEO: поиск и первое место */
-.vb-seo{position:absolute;left:18px;right:18px;top:20px;display:grid;gap:8px}
-.vb-seo .q{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;background:#fff;color:#333;font-size:12.5px;font-weight:600}
-.vb-seo .q::before{content:'';width:10px;height:10px;border:2px solid #888;border-radius:50%}
-.vb-seo .r{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
-.vb-seo .r b{grid-row:span 2;display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.08);font-family:'Unbounded',sans-serif;font-size:12px}
-.vb-seo .r s{height:7px;border-radius:4px;background:rgba(255,255,255,.3)}
-.vb-seo .r s+s{width:60%;background:rgba(255,255,255,.14)}
-.vb-seo .r.top{border-color:rgba(143,107,255,.55);background:rgba(106,61,255,.16)}
-.vb-seo .r.top b{background:var(--ac0)}
-.vb-seo .r.top s{background:#c9b8ff}
-
-.vb-note{margin-top:22px;font-size:13.5px;color:var(--muted);text-align:center}
-
-@media (max-width:1080px){
-  .vb-head{grid-template-columns:1fr}
-  .vb-grid{grid-template-columns:repeat(2,1fr);grid-template-areas:"land land" "key multi" "key shop" "card pres" "bot seo"}
-  .vb-t--land{min-height:420px}
+.vt{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6bff;--ac0:#6a3dff;--card:#15111f;--line:rgba(241,238,255,.09);
+position:relative;padding:120px 32px 110px;background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+.vt *,.vt *::before,.vt *::after{box-sizing:border-box;margin:0;padding:0}
+.vt a{color:inherit;text-decoration:none}
+.vt::before{content:'';position:absolute;right:-10%;top:10%;width:70vw;height:70vh;pointer-events:none;background:radial-gradient(closest-side,rgba(106,61,255,.18),transparent)}
+.vt-in{position:relative;max-width:1320px;margin:0 auto}
+.vt-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px}
+.vt-label{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
+.vt-label::before{content:'';width:26px;height:2px;background:currentColor}
+.vt-title{margin-top:14px;font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,3.8vw,58px);line-height:1.04;letter-spacing:-.035em}
+.vt-title em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:var(--ac);letter-spacing:-.01em}
+.vt-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;border:1px solid rgba(143,107,255,.45);background:rgba(106,61,255,.14);font-size:14px;font-weight:700}
+.vt-badge b{font-family:'Unbounded',sans-serif;color:var(--ac)}
+.vt-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:44px;margin-top:44px}
+.vt-list{display:grid;gap:8px;align-content:start}
+.vt-b{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;border-radius:16px;border:1px solid var(--line);background:var(--card);
+color:inherit;font:inherit;text-align:left;cursor:pointer;overflow:hidden;transition:border-color .3s,background .3s}
+.vt-b b{font-family:'Unbounded',sans-serif;font-size:16px;letter-spacing:-.02em}
+.vt-b span{font-size:13.5px;font-weight:800;color:var(--muted);white-space:nowrap}
+.vt-b span i{font-style:normal;font-weight:600}
+.vt-b em{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--ac)}
+.vt-b:hover{border-color:rgba(255,255,255,.2)}
+.vt-b.on{border-color:rgba(143,107,255,.55);background:linear-gradient(110deg,rgba(106,61,255,.25),var(--card) 60%)}
+.vt-b.on span{color:var(--fg)}
+.vt-b.on em{animation:vt-fill var(--dur,4.5s) linear forwards}
+@keyframes vt-fill{to{width:100%}}
+.vt-view{position:relative;display:flex;flex-direction:column;padding:30px;border-radius:28px;border:1px solid var(--line);background:radial-gradient(70% 60% at 70% 15%,rgba(106,61,255,.35),transparent 70%),var(--card)}
+.vt-dev{position:relative;aspect-ratio:1.85}
+.vt-lap{position:absolute;left:0;top:0;width:80%;aspect-ratio:16/10;border:8px solid #050507;border-radius:12px;overflow:hidden;background:#0b0912 center top/cover no-repeat;box-shadow:0 0 0 2px #4a4b52,0 40px 80px -30px #000}
+.vt-ph{position:absolute;right:2%;top:40px;width:22%;aspect-ratio:9/19;border:6px solid #050507;border-radius:22px;overflow:hidden;background:#0b0912 30% top/cover no-repeat;box-shadow:0 0 0 2px #4a4b52,0 40px 80px -30px #000}
+.vt-txt{margin-top:26px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end}
+.vt-txt h3{font-family:'Unbounded',sans-serif;font-size:22px;letter-spacing:-.02em}
+.vt-txt p{margin-top:8px;font-size:15px;line-height:1.55;color:var(--muted);max-width:440px}
+.vt-txt small{display:block;margin-top:10px;font-size:13.5px;font-weight:700}
+.vt-txt small b{color:var(--ac)}
+.vt-cta{display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 7px 0 22px;border-radius:999px;background:var(--ac0);font-size:15px;font-weight:700;white-space:nowrap;transition:background .3s}
+.vt-cta:hover{background:#7a52ff}
+.vt-cta i{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#fff;color:var(--ac0);font-style:normal}
+.vt-sw{animation:vt-sw .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes vt-sw{from{opacity:0;transform:translateY(12px)}}
+.vt-note{margin-top:18px;font-size:13.5px;color:var(--muted)}
+@media (max-width:860px){
+  .vt{padding:96px 16px 80px}
+  .vt-grid{grid-template-columns:minmax(0,1fr);gap:20px}
+  .vt-view{order:-1;padding:20px}
+  .vt-txt{grid-template-columns:minmax(0,1fr)}
+  .vt-cta{justify-content:space-between}
 }
-@media (max-width:640px){
-  .vb{padding:96px 16px 80px}
-  .vb-grid{grid-template-columns:1fr;grid-template-areas:"land" "key" "multi" "shop" "card" "pres" "bot" "seo";grid-auto-rows:auto}
-  .vb-t{min-height:300px}
-  .vb-t--land{min-height:380px}
-  .vb-t--land .vb-win{left:16px;right:16px;top:16px}
-  .vb-t--land .vb-phone{width:30%;right:20px}
-}
-@media (prefers-reduced-motion:reduce){ .vb *{animation:none!important;transition:none!important} .vb .vb-t,.vb .vb-chat p,.vb .vb-chat .k{opacity:1;transform:none} }
+@media (prefers-reduced-motion:reduce){ .vt *{animation:none!important} }
 </style>
 
-<section class="vb" id="services" aria-label="Послуги">
-  <div class="vb-in">
-    <div class="vb-head">
-      <div><div class="vb-label"></div><h2 class="vb-title"></h2></div>
-      <p class="vb-lead"></p>
+<section class="vt" id="services" aria-label="Послуги">
+  <div class="vt-in">
+    <div class="vt-head">
+      <div><div class="vt-label"></div><h2 class="vt-title"></h2></div>
+      <span class="vt-badge"></span>
     </div>
-    <div class="vb-grid">
-      <article class="vb-t vb-t--land" style="--d:0s"><div class="vb-vis"><div class="vb-win"><b><i></i><i></i><i></i></b><img class="sh-a" alt=""></div><div class="vb-phone"><img class="sh-b" alt=""></div></div><div class="vb-txt"></div></article>
-      <article class="vb-t vb-t--key" style="--d:.08s"><span class="vb-key-tag"></span><div class="vb-spot"><i class="vb-orbit"></i><span class="vb-land"></span></div><div class="vb-txt"></div></article>
-      <article class="vb-t vb-t--multi" style="--d:.16s"><div class="vb-vis"><div class="vb-win"><b><i></i><i></i><i></i></b><img class="sh-c" alt=""></div></div><div class="vb-txt"></div></article>
-      <article class="vb-t vb-t--shop" style="--d:.24s"><div class="vb-vis"><div class="vb-win"><b><i></i><i></i><i></i></b><img class="sh-d" alt=""></div></div><div class="vb-txt"></div></article>
-      <article class="vb-t vb-t--card" style="--d:.1s"><div class="vb-vis"><div class="vb-card"><i></i><s></s><u></u><u></u><u></u></div></div><div class="vb-txt"></div></article>
-      <article class="vb-t vb-t--pres" style="--d:.18s"><div class="vb-vis"><div class="vb-slide"><div><s></s><s></s></div><div class="vb-bars"><i style="--h:45%"></i><i style="--h:70%"></i><i style="--h:100%"></i></div></div><div class="vb-dots"><i></i><i></i><i></i><i></i></div></div><div class="vb-txt"></div></article>
-      <article class="vb-t vb-t--bot" style="--d:.26s"><div class="vb-vis"><div class="vb-chat"><p class="u"></p><p class="b"></p><div class="k"><span></span><span></span></div></div></div><div class="vb-txt"></div></article>
-      <article class="vb-t vb-t--seo" style="--d:.34s"><div class="vb-vis"><div class="vb-seo"><div class="q"></div><div class="r top"><b>1</b><s></s><s></s></div><div class="r"><b>2</b><s></s><s></s></div></div></div><div class="vb-txt"></div></article>
+    <div class="vt-grid">
+      <div class="vt-list" role="tablist"></div>
+      <div class="vt-view">
+        <div class="vt-dev" aria-hidden="true"><div class="vt-lap"></div><div class="vt-ph"></div></div>
+        <div class="vt-txt"><div><h3></h3><p></p><small></small></div><a class="vt-cta" target="_blank" rel="noopener"><span class="vt-t-cta"></span><i>→</i></a></div>
+      </div>
     </div>
-    <p class="vb-note"></p>
+    <p class="vt-note"></p>
   </div>
 </section>
 
@@ -1617,42 +1543,39 @@ padding:8%;display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:end;box
      ================================================================= */
   var CONFIG = {
     telegram: 'https://t.me/Tim1949',                // ← ИЗМЕНИТЬ: кнопка «Обговорити проєкт»
-    /* картинки в превью: ключи из VLAD_SHOTS (или ссылки на длинные скриншоты) */
-    shots: { a: 'ella', b: 'mareva', c: 'padre', d: 'syn' },
-    /* ← ИЗМЕНИТЬ: стартовые цены «від». Пусто — плашка не показывается */
-    prices: { land: '$300', key: '', multi: '$600', shop: '$900', card: '$150', pres: '$80', bot: '$200', seo: '$150' },
-
+    every: 4.5,                                      // вкладки переключаются сами каждые N секунд (0 — выключить)
+    /* price — цена «від» (пусто — «індивідуально»), a — картинка в ноутбуке, b — в телефоне (ключи из VLAD_SHOTS) */
+    items: [
+      { price: '$300', a: 'ella', b: 'mareva' }, { price: '', a: 'vid', b: 'olya' }, { price: '$600', a: 'padre', b: 'padre' }, { price: '$900', a: 'syn', b: 'syn' },
+      { price: '$150', a: 'olya', b: 'olya' }, { price: '$80', a: 'happy', b: 'happy' }, { price: '$200', a: 'vid', b: 'vid' }, { price: '$150', a: 'mareva', b: 'mareva' }
+    ],
     uk: {                                                                         // ← ИЗМЕНИТЬ
-      label: 'Послуги', title: 'Що я <em>створюю</em>', from: 'від',
-      lead: 'Сайти, презентації й боти з дизайном під ваш бренд. <b>Точну ціну називаю після короткого брифу</b> — ще до старту роботи.',
-      note: 'Ціни — стартові. Остаточна вартість залежить від обсягу, текстів і анімацій.',
-      keyTag: 'Під ключ', cta: 'Обговорити проєкт',
-      tiles: {
-        land: { h: 'Лендинги', p: 'Одна продаюча сторінка для послуги, запуску чи акції — з вау-першим екраном і заявками в Telegram.' },
-        key: { h: 'Сайти під ключ', p: 'Від ідеї до запуску: структура, тексти, дизайн, розробка, домен, SEO й заявки в Telegram.' },
-        multi: { h: 'Багатосторінкові сайти', p: 'Для салону, студії чи компанії: кілька розділів, онлайн-запис, галерея.' },
-        shop: { h: 'Інтернет-магазини', p: 'Каталог, кошик, оплата й сповіщення про замовлення.' },
-        card: { h: 'Сайти-візитки', p: 'Особиста сторінка експерта: хто ви, послуги й контакти.' },
-        pres: { h: 'Презентації для курсів', p: 'Слайди для уроків, вебінарів і продажу курсу.' },
-        bot: { h: 'Telegram-боти', p: 'Запис, заявки й відповіді клієнтам 24/7.', u: 'Хочу записатися на стрижку', b: 'Оберіть зручний час:', k: ['Пн 12:00', 'Вт 15:30'] },
-        seo: { h: 'SEO й аналітика', p: 'Щоб сайт знаходили в Google і ви бачили заявки.', q: 'барбершоп одеса' }
-      }
+      label: 'Послуги', title: 'Що я <em>створюю</em>', badge: 'Лендинг під ключ — за <b>7 днів</b>', from: 'від', custom: 'індивідуально', cta: 'Обговорити проєкт', example: 'Приклад:',
+      note: 'Ціни стартові. Точну вартість і термін називаю після короткого брифу — ще до старту роботи.',
+      names: ['Лендинги', 'Сайти під ключ', 'Багатосторінкові сайти', 'Інтернет-магазини', 'Сайти-візитки', 'Презентації для курсів', 'Telegram-боти', 'SEO й аналітика'],
+      texts: ['Одна продаюча сторінка для послуги, запуску чи акції — з вау-першим екраном і заявками в Telegram.',
+        'Від ідеї до запуску: структура, тексти, дизайн, розробка, домен, SEO й заявки в Telegram.',
+        'Для салону, студії чи компанії: кілька розділів, онлайн-запис, галерея.',
+        'Каталог, кошик, оплата й сповіщення про замовлення.',
+        'Особиста сторінка експерта: хто ви, послуги й контакти.',
+        'Слайди для уроків, вебінарів і продажу курсу.',
+        'Запис, заявки й відповіді клієнтам 24/7.',
+        'Щоб сайт знаходили в Google і ви бачили заявки.'],
+      ex: ['elladevil', 'ВІДЧИНЕНО', 'PADRE Barbershop', 'Synergy GK', 'Blog Start', 'Happy Finance', '', 'Mareva Dental']
     },
     en: {                                                                         // ← ИЗМЕНИТЬ
-      label: 'Services', title: 'What I <em>create</em>', from: 'from',
-      lead: 'Websites, presentations and bots designed around your brand. <b>I give you the exact price after a short brief</b> — before any work starts.',
-      note: 'Starting prices. The final cost depends on the scope, copy and animations.',
-      keyTag: 'Turnkey', cta: 'Discuss a project',
-      tiles: {
-        land: { h: 'Landing pages', p: 'One high-converting page for a service, launch or promo — with a wow first screen and leads to Telegram.' },
-        key: { h: 'Turnkey websites', p: 'From idea to launch: structure, copy, design, development, domain, SEO and leads to Telegram.' },
-        multi: { h: 'Multi-page websites', p: 'For a salon, studio or company: several sections, online booking, gallery.' },
-        shop: { h: 'Online stores', p: 'Catalog, cart, payment and order notifications.' },
-        card: { h: 'Personal sites', p: 'An expert’s page: who you are, services and contacts.' },
-        pres: { h: 'Course presentations', p: 'Slides for lessons, webinars and selling a course.' },
-        bot: { h: 'Telegram bots', p: 'Bookings, requests and replies to clients 24/7.', u: 'I’d like to book a haircut', b: 'Pick a time that suits you:', k: ['Mon 12:00', 'Tue 15:30'] },
-        seo: { h: 'SEO & analytics', p: 'So people find your site on Google and you see the leads.', q: 'barbershop odesa' }
-      }
+      label: 'Services', title: 'What I <em>create</em>', badge: 'Turnkey landing page in <b>7 days</b>', from: 'from', custom: 'custom', cta: 'Discuss a project', example: 'Example:',
+      note: 'Starting prices. I give you the exact price and timeline after a short brief — before any work starts.',
+      names: ['Landing pages', 'Turnkey websites', 'Multi-page websites', 'Online stores', 'Personal sites', 'Course presentations', 'Telegram bots', 'SEO & analytics'],
+      texts: ['One high-converting page for a service, launch or promo — with a wow first screen and leads to Telegram.',
+        'From idea to launch: structure, copy, design, development, domain, SEO and leads to Telegram.',
+        'For a salon, studio or company: several sections, online booking, gallery.',
+        'Catalog, cart, payment and order notifications.',
+        'An expert’s page: who you are, services and contacts.',
+        'Slides for lessons, webinars and selling a course.',
+        'Bookings, requests and replies to clients 24/7.',
+        'So people find your site on Google and you see the leads.'],
+      ex: ['elladevil', 'ВІДЧИНЕНО', 'PADRE Barbershop', 'Synergy GK', 'Blog Start', 'Happy Finance', '', 'Mareva Dental']
     }
   };
   /* ======================= дальше можно не трогать ======================= */
@@ -1663,33 +1586,36 @@ padding:8%;display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:end;box
   var SH = window.VLAD_SHOTS || {};
   var lang = (window.VLAD_I18N && window.VLAD_I18N.lang) || 'uk';
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  ['a', 'b', 'c', 'd'].forEach(function (k) { var im = q('.sh-' + k); if (im) im.src = SH[CONFIG.shots[k]] || CONFIG.shots[k]; });
-  var arrow = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var cur = 0, tm, inView = false, bs = [];
+  root.style.setProperty('--dur', CONFIG.every + 's');
+  q('.vt-cta').href = CONFIG.telegram;
 
   function render() {
     var T = CONFIG[lang] || CONFIG.uk;
-    q('.vb-label').textContent = T.label;
-    q('.vb-title').innerHTML = T.title;
-    q('.vb-lead').innerHTML = T.lead;
-    q('.vb-note').textContent = T.note;
-    q('.vb-key-tag').textContent = T.keyTag;
-    Object.keys(T.tiles).forEach(function (k) {
-      var t = T.tiles[k], tile = q('.vb-t--' + k), pr = CONFIG.prices[k];
-      tile.querySelector('.vb-txt').innerHTML = '<h3>' + t.h + '</h3><p>' + t.p + '</p>' +
-        (k === 'key' ? '<a class="vb-cta" href="' + CONFIG.telegram + '" target="_blank" rel="noopener">' + T.cta + '<i>' + arrow + '</i></a>' : '');
-      var old = tile.querySelector('.vb-price'); if (old) old.remove();
-      if (pr) tile.insertAdjacentHTML('afterbegin', '<span class="vb-price"><i>' + T.from + '</i> ' + pr + '</span>');
-    });
-    var b = T.tiles.bot;
-    q('.vb-chat .u').textContent = b.u; q('.vb-chat .b').textContent = b.b;
-    q('.vb-chat .k').innerHTML = b.k.map(function (x) { return '<span>' + x + '</span>'; }).join('');
-    q('.vb-seo .q').textContent = T.tiles.seo.q;
+    q('.vt-label').textContent = T.label; q('.vt-title').innerHTML = T.title; q('.vt-badge').innerHTML = T.badge;
+    q('.vt-t-cta').textContent = T.cta; q('.vt-note').textContent = T.note;
+    q('.vt-list').innerHTML = CONFIG.items.map(function (x, i) {
+      return '<button type="button" class="vt-b" role="tab"><b>' + T.names[i] + '</b><span>' + (x.price ? '<i>' + T.from + '</i> ' + x.price : T.custom) + '</span><em></em></button>';
+    }).join('');
+    bs = [].slice.call(root.querySelectorAll('.vt-b'));
+    bs.forEach(function (b, i) { b.addEventListener('click', function () { show(i, true); }); });
+    show(cur, false);
   }
-
-  if ('IntersectionObserver' in window && !reduce) {
-    new IntersectionObserver(function (es, ob) { es.forEach(function (en) { if (en.isIntersecting) { root.classList.add('is-in'); ob.disconnect(); } }); }, { threshold: .08 }).observe(root);
-    window.addEventListener('scroll', function chk() { var r = root.getBoundingClientRect(); if (r.top < innerHeight * .85) { root.classList.add('is-in'); window.removeEventListener('scroll', chk); } }, { passive: true });
-  } else root.classList.add('is-in');
+  function show(i, user) {
+    var T = CONFIG[lang] || CONFIG.uk, x = CONFIG.items[i];
+    cur = i; bs.forEach(function (b, j) { b.classList.toggle('on', j === i); b.setAttribute('aria-selected', j === i); });
+    q('.vt-lap').style.backgroundImage = 'url("' + (SH[x.a] || x.a) + '")';
+    q('.vt-ph').style.backgroundImage = 'url("' + (SH[x.b] || x.b) + '")';
+    var t = q('.vt-txt'); t.classList.remove('vt-sw'); void t.offsetWidth; t.classList.add('vt-sw');
+    t.querySelector('h3').textContent = T.names[i]; t.querySelector('p').textContent = T.texts[i];
+    t.querySelector('small').innerHTML = T.ex[i] ? '<b>' + T.example + '</b> ' + T.ex[i] : '';
+    clearTimeout(tm);
+    if (CONFIG.every && !reduce && inView) tm = setTimeout(function () { show((cur + 1) % CONFIG.items.length); }, CONFIG.every * 1000);
+  }
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+    inView = es[0].isIntersecting;
+    if (inView) show(cur); else clearTimeout(tm);
+  }, { threshold: .25 }).observe(root);
 
   window.addEventListener('vlad:lang', function (e) { lang = e.detail; render(); });
   render();
@@ -1726,10 +1652,14 @@ background-color:#0b0912;background-size:cover;background-position:50% 0;backgro
 will-change:transform;backface-visibility:hidden;transition:box-shadow .3s,border-color .3s}
 .vz-c{pointer-events:auto;cursor:pointer}
 .vz-c.is-hot{border-color:rgba(143,107,255,.85);box-shadow:0 40px 90px -16px rgba(106,61,255,.7)}
+.vz-c:not(.is-hot):hover{border-color:rgba(255,255,255,.4)}
 .vz-info{position:absolute;left:50%;bottom:4vh;z-index:4;display:flex;align-items:center;gap:20px;width:min(760px,92vw);padding:16px 16px 16px 22px;border-radius:22px;transform:translate(-50%,20px);
 background:rgba(21,17,31,.9);border:1px solid var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
 .vz.is-fan .vz-info{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .vz-it{flex:1;min-width:0;display:grid;gap:6px}
+.vz-nv{flex:none;display:flex;align-items:center;gap:8px;font-family:'Unbounded',sans-serif;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.vz-arr{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:none;color:var(--fg);font-size:20px;line-height:1;cursor:pointer;transition:background .25s,border-color .25s}
+.vz-arr:hover{background:var(--ac0);border-color:var(--ac0)}
 .vz-ih{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
 .vz-it p{font-size:13.5px;line-height:1.5;color:#d6d0ea}
 .vz-info b{font-family:'Unbounded',sans-serif;font-size:16px;letter-spacing:-.02em}
@@ -1781,12 +1711,12 @@ background:rgba(21,17,31,.9);border:1px solid var(--line);-webkit-backdrop-filte
     uk: {                                                                         // ← ИЗМЕНИТЬ
       label: 'Роботи', w1: 'Мої', w2: '<em>проєкти</em>', title: 'Мої <em>проєкти</em>',
       sub: 'Концепти й навчальні проєкти — живі сайти, які можна відкрити',
-      hint: 'Натисніть на проєкт, щоб дізнатися більше', hintMob: 'Натисніть на проєкт', open: 'Відкрити сайт ↗', badges: { concept: 'Концепт', pitch: 'Конкурсна робота' }
+      hint: 'Гортайте стрілками або натисніть на проєкт', hintMob: 'Гортайте стрілками або натисніть на проєкт', open: 'Відкрити сайт ↗', badges: { concept: 'Концепт', pitch: 'Конкурсна робота' }
     },
     en: {                                                                         // ← ИЗМЕНИТЬ
       label: 'Work', w1: 'My', w2: '<em>projects</em>', title: 'My <em>projects</em>',
       sub: 'Concepts and study projects — live websites you can open',
-      hint: 'Click a project to learn more', hintMob: 'Tap a project', open: 'Open site ↗', badges: { concept: 'Concept', pitch: 'Pitch project' }
+      hint: 'Use the arrows or click a project', hintMob: 'Use the arrows or tap a project', open: 'Open site ↗', badges: { concept: 'Concept', pitch: 'Pitch project' }
     },
     /* ПРОЕКТЫ. image — ключ из VLAD_SHOTS (или ссылка на длинный скриншот), link — живой сайт.
        badge — 'concept' (концепт), 'pitch' (конкурсна робота) или '' (реальний клієнт).
@@ -1834,17 +1764,18 @@ background:rgba(21,17,31,.9);border:1px solid var(--line);-webkit-backdrop-filte
       var el = document.createElement('button'); el.type = 'button';
       el.className = 'vz-c'; el.setAttribute('aria-label', p.name);
       el.style.backgroundImage = 'url("' + (SH[p.image] || p.image) + '")';
-      el.addEventListener('mouseenter', function () { if (!mob) { hot = n; info(n); } });
-      el.addEventListener('mouseleave', function () { if (!mob) { hot = -1; info(sel); } });
-      el.addEventListener('click', function () { sel = n; info(n); });
+      el.addEventListener('click', function () { go(n); });
       scene.appendChild(el); cards.push({ el: el, i: n });
     });
     if (sel < 0) sel = Math.floor(cards.length / 2);
     info(sel);
   }
+  function go(i) { var N = cards.length; sel = ((i % N) + N) % N; info(sel); }
   function info(i) {
     var T = CONFIG[lang] || CONFIG.uk, p = P[i], t = p[lang] || p.uk;
-    q('.vz-info').innerHTML = '<div class="vz-it"><div class="vz-ih"><b>' + p.name + '</b>' + (p.badge ? '<i>' + T.badges[p.badge] + '</i>' : '') + '<span>' + t.niche + '</span></div>' +
+    var N = P.length, nn = function (x) { return (x < 9 ? '0' : '') + (x + 1); };
+    q('.vz-info').innerHTML = '<div class="vz-nv"><button type="button" class="vz-arr" data-d="-1" aria-label="Prev">‹</button><span>' + nn(i) + ' / ' + nn(N - 1) + '</span><button type="button" class="vz-arr" data-d="1" aria-label="Next">›</button></div>' +
+      '<div class="vz-it"><div class="vz-ih"><b>' + p.name + '</b>' + (p.badge ? '<i>' + T.badges[p.badge] + '</i>' : '') + '<span>' + t.niche + '</span></div>' +
       '<p>' + t.desc + '</p></div><a href="' + p.link + '" target="_blank" rel="noopener">' + T.open + '</a>';
   }
   function render() {
@@ -1873,11 +1804,12 @@ background:rgba(21,17,31,.9);border:1px solid var(--line);-webkit-backdrop-filte
     var u = (n - (N - 1) / 2) * 1.12 - s, a = u * .62;
     return { x: u * G.cw * .98, y: Math.sin(a) * G.H * .16, z: Math.cos(a) * 160 - 220, rx: Math.cos(a) * 14, ry: -Math.sin(a) * 38, rz: Math.sin(a * .5) * 6, sc: 1 };
   }
+  var selF = -1;
+  function wrapD(d, N) { return ((d % N) + N * 1.5) % N - N / 2; }
   function fan(n, N) {
-    var spread = mob ? 50 : 76, ang = N > 1 ? (n / (N - 1) - .5) * spread : 0, R = mob ? G.W * .78 : Math.min(G.W * .52, G.H * 1.2);
-    var cy = mob ? G.H * .5 + R : G.H * .5 + R - G.H * .02, rad = ang * Math.PI / 180;
-    var on = n === hot || n === sel, lift = on ? 34 : 0;
-    return { x: Math.sin(rad) * (R + lift), y: cy - Math.cos(rad) * (R + lift) - G.H / 2, z: n === hot ? 80 : lift ? 60 : n * .5, rx: 0, ry: 0, rz: ang, sc: on ? 1.06 : .96 };
+    var d = wrapD(n - selF, N), step = mob ? 17 : 13, ang = d * step, R = mob ? G.W * .85 : Math.min(G.W * .6, G.H * 1.35);
+    var cy = mob ? G.H * .5 + R : G.H * .5 + R - G.H * .04, rad = ang * Math.PI / 180, on = Math.max(0, 1 - Math.abs(d)), lift = on * 40;
+    return { x: Math.sin(rad) * (R + lift), y: cy - Math.cos(rad) * (R + lift) - G.H / 2, z: 120 - Math.abs(d) * 30, rx: 0, ry: 0, rz: ang, sc: .9 + on * .14, d: Math.abs(d) };
   }
   var cur = [];
   function update() {
@@ -1895,21 +1827,23 @@ background:rgba(21,17,31,.9);border:1px solid var(--line);-webkit-backdrop-filte
     }
     var t = mob ? 1 : ease(cl((p - .58) / .26)), s = mob ? 0 : lerp(-(N + 2) * .55, (N + 2) * .55, cl((p - .06) / .62));
     root.classList.toggle('is-fan', t > .96);
+    if (selF < 0) selF = sel;
+    selF += reduce ? wrapD(sel - selF, N) : wrapD(sel - selF, N) * .14;
     cards.forEach(function (c, n) {
       var tt = mob ? 1 : cl(t * 1.25 - (n % 5) * .05), A = ribbon(n, N, s), B = fan(n, N), k = ease(tt);
       var o = {}; ['x', 'y', 'z', 'rx', 'ry', 'rz', 'sc'].forEach(function (key) { o[key] = lerp(A[key], B[key], k); });
-      var tgt = cur[n] || o;
-      if (root.classList.contains('is-fan') || mob) ['x', 'y', 'sc'].forEach(function (key) { o[key] = tgt[key] + (o[key] - tgt[key]) * .25; });
       cur[n] = o;
-      var vis = mob ? 1 : cl((p - .02) / .06);
+      var vis = (mob ? 1 : cl((p - .02) / .06)) * lerp(1, cl(1.35 - B.d * .22), k);
       c.el.style.transform = 'translate3d(' + o.x.toFixed(1) + 'px,' + o.y.toFixed(1) + 'px,' + o.z.toFixed(1) + 'px) rotateX(' + o.rx.toFixed(2) + 'deg) rotateY(' + o.ry.toFixed(2) + 'deg) rotateZ(' + o.rz.toFixed(2) + 'deg) scale(' + o.sc.toFixed(3) + ')';
       c.el.style.opacity = vis;
-      c.el.style.zIndex = n === hot ? 99 : n === sel ? 98 : Math.round(o.z + 400);
-      c.el.classList.toggle('is-hot', n === hot || n === sel);
+      c.el.style.zIndex = Math.round(o.z + 400);
+      c.el.classList.toggle('is-hot', n === sel);
     });
   }
   function loop() { update(); requestAnimationFrame(loop); }
 
+  root.addEventListener('click', function (e) { var b = e.target.closest('.vz-arr'); if (b) go(sel + +b.getAttribute('data-d')); });
+  root.addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft') go(sel - 1); if (e.key === 'ArrowRight') go(sel + 1); });
   window.addEventListener('resize', layout);
   window.addEventListener('vlad:lang', function (e) { lang = e.detail; render(); info(sel); });
   layout();
@@ -1919,107 +1853,72 @@ background:rgba(21,17,31,.9);border:1px solid var(--line);-webkit-backdrop-filte
 
 <!-- ==================================================================
      ВЛАД · БЛОК 4 «КАК Я РАБОТАЮ» — для Tilda, блок T123 «HTML-код»
-     Горизонтальная лента этапов: на компьютере блок закрепляется,
-     и при прокрутке этапы едут влево. У каждого этапа — мини-картинка результата.
-     Все тексты и сроки меняются в CONFIG в начале <script>.
+     Процесс в виде переписки в Telegram: сообщения появляются при прокрутке,
+     сверху шкала «7 днів» подсвечивает дни по ходу шагов.
+     Все тексты, шаги и дни меняются в CONFIG в начале <script>.
      Ищи пометки  ← ИЗМЕНИТЬ
      Якорь блока: #process
      ================================================================== -->
 <style>
-.vy{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6bff;--ac0:#6a3dff;--card:#15111f;--card2:#1b1528;--line:rgba(241,238,255,.09);--mk:rgba(241,238,255,.12);
-position:relative;background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.vy *,.vy *::before,.vy *::after{box-sizing:border-box;margin:0;padding:0}
-.vy a{color:inherit;text-decoration:none}
-.vy-sticky{position:relative;padding:110px 0 90px;overflow:hidden}
-.vy-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;max-width:1320px;margin:0 auto;padding:0 32px}
-.vy-label{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
-.vy-label::before{content:'';width:26px;height:2px;background:currentColor}
-.vy-title{margin-top:14px;font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,3.8vw,58px);line-height:1.04;letter-spacing:-.035em}
-.vy-title em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em;color:var(--ac)}
-.vy-prog{display:flex;align-items:center;gap:14px;font-family:'Unbounded',sans-serif;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
-.vy-prog b{color:var(--fg)}
-.vy-bar{width:160px;height:2px;border-radius:2px;background:var(--line);overflow:hidden}
-.vy-bar i{display:block;height:100%;background:var(--ac);transform-origin:left;transform:scaleX(0)}
-
-.vy-track{display:flex;gap:20px;margin-top:40px;padding:0 32px;will-change:transform}
-.vy-step{position:relative;flex:none;width:min(420px,82vw);display:flex;flex-direction:column;border-radius:24px;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);overflow:hidden;
-transition:border-color .5s}
-.vy-step.is-on{border-color:rgba(143,107,255,.5)}
-.vy-vis{position:relative;height:190px;overflow:hidden;background:radial-gradient(70% 80% at 50% 0%,rgba(106,61,255,.25),transparent 70%);border-bottom:1px solid var(--line)}
-.vy-body{display:flex;flex-direction:column;gap:10px;padding:22px 24px 24px}
-.vy-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.vy-n{font-family:'Unbounded',sans-serif;font-weight:800;font-size:44px;line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px rgba(185,165,255,.6)}
-.vy-step.is-on .vy-n{color:var(--ac);-webkit-text-stroke:0}
-.vy-time{padding:6px 12px;border-radius:999px;border:1px solid var(--line);font-size:12.5px;font-weight:700;color:var(--muted);white-space:nowrap}
-.vy-body h3{font-family:'Unbounded',sans-serif;font-weight:700;font-size:21px;letter-spacing:-.02em;line-height:1.2}
-.vy-body p{font-size:14.5px;line-height:1.55;color:var(--muted)}
-.vy-get{margin-top:auto;padding-top:10px;font-size:13.5px;font-weight:700}
-.vy-get span{color:var(--muted);font-weight:600}
-.vy-get::before{content:'✓';display:inline-grid;place-items:center;width:18px;height:18px;margin-right:8px;border-radius:50%;background:rgba(143,107,255,.2);color:var(--ac);font-size:10px}
-
-/* картинки этапов */
-.vy-chat{position:absolute;left:24px;right:24px;top:30px;display:grid;gap:8px;font-size:12.5px}
-.vy-chat p{max-width:80%;padding:8px 12px;border-radius:12px;line-height:1.35}
-.vy-chat .in{background:#2a2438;border-bottom-left-radius:4px}
-.vy-chat .out{justify-self:end;background:var(--ac0);border-bottom-right-radius:4px}
-.vy-chat .ty{display:flex;gap:4px;width:auto;justify-self:start;background:#2a2438}
-.vy-chat .ty i{width:6px;height:6px;border-radius:50%;background:#a19cb3;animation:vy-dot 1s infinite}
-.vy-chat .ty i:nth-child(2){animation-delay:.15s}.vy-chat .ty i:nth-child(3){animation-delay:.3s}
-@keyframes vy-dot{50%{transform:translateY(-3px);opacity:.4}}
-.vy-wire{position:absolute;left:50%;top:26px;width:48%;transform:translateX(-50%);display:grid;gap:7px}
-.vy-wire i{height:14px;border-radius:5px;background:var(--mk)}
-.vy-wire i:first-child{height:44px;background:rgba(143,107,255,.35)}
-.vy-wire i:nth-child(3){width:70%}
-.vy-price{position:absolute;right:22%;top:30px;padding:8px 12px;border-radius:10px;background:#fff;color:#1b1430;font-family:'Unbounded',sans-serif;font-size:13px;font-weight:800;transform:rotate(6deg);
-box-shadow:0 14px 30px -8px rgba(0,0,0,.6)}
-.vy-design{position:absolute;left:24px;right:24px;top:24px;bottom:-10px;display:grid;grid-template-columns:1.3fr 1fr;gap:12px}
-.vy-design .fr{border-radius:10px;border:1.5px solid var(--ac);background:rgba(106,61,255,.12);display:grid;place-items:center;font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:44px}
-.vy-design .pal{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start}
-.vy-design .pal i{aspect-ratio:1;border-radius:50%}
-.vy-code{position:absolute;left:24px;right:24px;top:26px;display:grid;gap:7px}
-.vy-code i{height:8px;border-radius:4px;background:var(--mk)}
-.vy-code i:nth-child(1){width:40%;background:#b9a5ff}.vy-code i:nth-child(2){width:72%;margin-left:16px}.vy-code i:nth-child(3){width:58%;margin-left:16px;background:#7dffb0}
-.vy-code i:nth-child(4){width:66%;margin-left:32px}.vy-code i:nth-child(5){width:30%;background:#b9a5ff}
-.vy-load{position:absolute;left:24px;right:24px;bottom:26px;height:8px;border-radius:4px;background:var(--mk);overflow:hidden}
-.vy-load b{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--ac0),#b9a5ff);transform-origin:left;animation:vy-load 3s ease-in-out infinite}
-@keyframes vy-load{0%{transform:scaleX(.05)}80%,100%{transform:scaleX(1)}}
-.vy-live{position:absolute;left:24px;right:24px;top:22px;bottom:-12px;border-radius:12px 12px 0 0;background:#0b0912;border:1px solid rgba(255,255,255,.12);overflow:hidden}
-.vy-live .u{display:flex;align-items:center;gap:8px;height:28px;padding:0 12px;background:#141020;font-size:11px;color:#cfc8ea}
-.vy-live .u::before{content:'';width:8px;height:8px;border-radius:50%;background:#7dffb0;box-shadow:0 0 10px #7dffb0}
-.vy-live svg{position:absolute;left:0;right:0;bottom:0;width:100%;height:70%}
-.vy-live polyline{fill:none;stroke:var(--ac);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:400;stroke-dashoffset:400;animation:vy-draw 3s ease forwards infinite}
-@keyframes vy-draw{70%,100%{stroke-dashoffset:0}}
-
-/* последняя карточка — призыв */
-.vy-end{justify-content:center;gap:16px;padding:32px;background:radial-gradient(80% 70% at 50% 30%,rgba(106,61,255,.4),transparent 70%),linear-gradient(180deg,var(--card2),var(--card));border-color:rgba(143,107,255,.35)}
-.vy-end h3{font-family:'Unbounded',sans-serif;font-weight:800;font-size:30px;letter-spacing:-.03em;line-height:1.1}
-.vy-end h3 em{font-family:'Playfair Display',serif;font-style:italic;color:var(--ac)}
-.vy-end p{font-size:14.5px;line-height:1.55;color:var(--muted)}
-.vy-btn{display:flex;align-items:center;justify-content:space-between;height:54px;padding:0 7px 0 22px;border-radius:999px;background:var(--ac0);font-size:15px;font-weight:700;transition:background .3s}
-.vy-btn:hover{background:#7a52ff}
-.vy-btn i{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#fff;color:var(--ac0);font-style:normal}
-
-/* компьютер: блок закреплён, лента едет вбок */
-.vy.is-pin .vy-pin{position:relative}
-.vy.is-pin .vy-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:70px 0 30px}
-@media (max-width:900px){
-  .vy-sticky{padding:96px 0 70px}
-  .vy-head{padding:0 16px}
-  .vy-track{flex-direction:column;padding:0 16px}
-  .vy-step{width:auto}
-  .vy-prog{display:none}
+.vm{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6bff;--ac0:#6a3dff;--card:#15111f;--line:rgba(241,238,255,.09);
+position:relative;padding:120px 32px 120px;background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+.vm *,.vm *::before,.vm *::after{box-sizing:border-box;margin:0;padding:0}
+.vm a{color:inherit;text-decoration:none}
+.vm-in{max-width:1180px;margin:0 auto}
+.vm-head{text-align:center}
+.vm-label{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
+.vm-label::before,.vm-label::after{content:'';width:26px;height:2px;background:currentColor}
+.vm-title{margin-top:14px;font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,3.8vw,58px);line-height:1.04;letter-spacing:-.035em}
+.vm-title em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:var(--ac);letter-spacing:-.01em}
+.vm-sub{margin:16px auto 0;max-width:520px;font-size:16px;line-height:1.55;color:var(--muted)}
+.vm-sub b{color:var(--fg)}
+/* шкала 7 дней */
+.vm-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;max-width:620px;margin:34px auto 0}
+.vm-d{position:relative;padding:10px 0 9px;border-radius:12px;border:1px solid var(--line);background:var(--card);text-align:center;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);transition:background .5s,border-color .5s,color .5s}
+.vm-d b{display:block;font-family:'Unbounded',sans-serif;font-size:18px;letter-spacing:-.02em;color:inherit}
+.vm-d.on{background:var(--ac0);border-color:var(--ac0);color:#fff}
+/* чат */
+.vm-ct{max-width:620px;margin:16px auto 0;border-radius:28px;background:var(--card);border:1px solid var(--line);overflow:hidden;box-shadow:0 40px 100px -40px rgba(106,61,255,.6)}
+.vm-h{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.vm-av{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--ac0);font-family:'Unbounded',sans-serif;font-weight:800}
+.vm-h b{display:block;font-size:15px}.vm-h small{font-size:12.5px;color:#7dffb0}
+.vm-b{display:grid;gap:12px;padding:22px 18px 26px}
+.vm-m{max-width:84%;padding:12px 16px;border-radius:18px;font-size:15px;line-height:1.5;opacity:0;transform:translateY(16px) scale(.98);transition:opacity .5s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.vm-m.on{opacity:1;transform:none}
+.vm-m.c{justify-self:end;background:var(--ac0);border-bottom-right-radius:6px}
+.vm-m.v{background:#221c30;border-bottom-left-radius:6px}
+.vm-m.v .s{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ac)}
+.vm-m.v .s span{color:var(--fg)}
+.vm-m.v h4{margin-top:6px;font-family:'Unbounded',sans-serif;font-size:17px;letter-spacing:-.02em}
+.vm-m.v p{margin-top:4px;color:#d6d0ea;font-size:14.5px}
+.vm-m.v small{display:block;margin-top:8px;font-size:13px;font-weight:700;color:#b9a5ff}
+.vm-m b.hl{color:#b9a5ff}
+.vm-k{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:100%;width:100%;padding:0}
+.vm-k a{padding:13px;border-radius:14px;background:rgba(143,107,255,.16);border:1px solid rgba(143,107,255,.45);text-align:center;font-weight:800;font-size:14px}
+.vm-k a:first-child{background:var(--ac0);border-color:var(--ac0)}
+.vm-ty{display:flex;gap:5px;width:max-content}
+.vm-ty i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:vm-dt 1s infinite}
+.vm-ty i:nth-child(2){animation-delay:.15s}.vm-ty i:nth-child(3){animation-delay:.3s}
+@keyframes vm-dt{50%{transform:translateY(-3px);opacity:.4}}
+@media (max-width:860px){
+  .vm{padding:96px 16px 90px}
+  .vm-days{gap:4px;margin-top:26px}
+  .vm-d{padding:8px 0 7px;font-size:9.5px;border-radius:10px}
+  .vm-d b{font-size:15px}
+  .vm-b{padding:18px 12px 22px}
+  .vm-m{max-width:92%}
+  .vm-k{grid-template-columns:1fr}
 }
-@media (prefers-reduced-motion:reduce){ .vy *{animation:none!important} }
+@media (prefers-reduced-motion:reduce){ .vm-m{opacity:1;transform:none;transition:none} .vm-ty i{animation:none} }
 </style>
 
-<section class="vy" id="process" aria-label="Як я працюю">
-  <div class="vy-pin">
-    <div class="vy-sticky">
-      <div class="vy-head">
-        <div><div class="vy-label"></div><h2 class="vy-title"></h2></div>
-        <div class="vy-prog"><b class="vy-cur">01</b><span class="vy-bar"><i></i></span><span class="vy-total"></span></div>
-      </div>
-      <div class="vy-track"></div>
+<section class="vm" id="process" aria-label="Як я працюю">
+  <div class="vm-in">
+    <div class="vm-head"><div class="vm-label"></div><h2 class="vm-title"></h2><p class="vm-sub"></p></div>
+    <div class="vm-days" aria-hidden="true"></div>
+    <div class="vm-ct">
+      <div class="vm-h"><span class="vm-av">v</span><div><b>Влад · vlad.webdesign7</b><small class="vm-t-on"></small></div></div>
+      <div class="vm-b"></div>
     </div>
   </div>
 </section>
@@ -2032,30 +1931,39 @@ box-shadow:0 14px 30px -8px rgba(0,0,0,.6)}
      ================================================================= */
   var CONFIG = {
     telegram: 'https://t.me/Tim1949',                // ← ИЗМЕНИТЬ: кнопка «Почати проєкт»
-    /* time — срок этапа (для лендинга), get — что клиент получает. Пустой time — не показывается */
+    /* дни каждого шага на шкале из 7 дней: [с какого, по какой] */
+    days: [[1, 1], [2, 2], [3, 4], [5, 6], [7, 7]],
     uk: {                                                                         // ← ИЗМЕНИТЬ
-      label: 'Процес', title: 'Як я <em>працюю</em>', getLabel: 'Ви отримуєте:',
+      label: 'Процес', title: 'Як я <em>працюю</em>', online: '● онлайн', day: 'День',
+      sub: 'Від першого повідомлення до готового сайту — <b>7 днів</b>. Ось як це виглядає:',
+      hi: 'Привіт! Хочу сайт для своєї студії. Як ви працюєте?',
+      reply: 'Привіт! Роблю сайт за <b class="hl">7 днів</b> — 5 кроків, і він уже приймає заявки. Розповідаю:',
+      step: 'Крок', get: 'Ви отримуєте:',
       steps: [
-        { name: 'Знайомство й бриф', time: '1 день', text: 'Пишете в Telegram — коротко обговорюємо задачу: нішу, цілі, терміни й бюджет. Ставлю питання, щоб зрозуміти ваш бізнес.', get: 'зрозумілий бриф' },
-        { name: 'Структура й ціна', time: '1–2 дні', text: 'Надсилаю структуру сайту по блоках, термін і точну вартість. Фіксуємо домовленості — і стартуємо.', get: 'план сайту й точна ціна' },
-        { name: 'Дизайн', time: '3–5 днів', text: 'Спершу показую перший екран у вашому стилі, після схвалення — решту. Правки обговорюємо одразу.', get: 'дизайн, який вам подобається' },
-        { name: 'Розробка', time: '3–7 днів', text: 'Верстаю сайт з анімаціями й адаптивом під телефон. Даю посилання, щоб ви бачили прогрес наживо.', get: 'живий сайт для перевірки' },
-        { name: 'Запуск і підтримка', time: '1 день', text: 'Підключаю домен, форми й заявки в Telegram, налаштовую SEO. Після запуску допомагаю з дрібними правками.', get: 'сайт на вашому домені' }
+        { t: 'День 1', n: 'Знайомство й бриф', d: 'Пишете в Telegram — обговорюємо задачу: нішу, цілі й побажання. Того ж дня називаю точну ціну.', g: 'зрозумілий план і ціна' },
+        { t: 'День 2', n: 'Структура й тексти', d: 'Надсилаю структуру сайту по блоках і тексти. Ви погоджуєте — і я сідаю за дизайн.', g: 'готова структура сайту' },
+        { t: 'Дні 3–4', n: 'Дизайн', d: 'Спершу показую перший екран у вашому стилі, після схвалення — решту сторінки.', g: 'дизайн, який вам подобається' },
+        { t: 'Дні 5–6', n: 'Розробка', d: 'Верстаю сайт з анімаціями й адаптивом. Даю посилання, щоб ви бачили прогрес наживо.', g: 'живий сайт для перевірки' },
+        { t: 'День 7', n: 'Запуск', d: 'Підключаю домен, форми й заявки в Telegram, налаштовую SEO. Після запуску — допомагаю з правками.', g: 'сайт на вашому домені' }
       ],
-      chat: ['Привіт! Потрібен лендинг для студії', 'Привіт! Розкажіть про ваших клієнтів?'],
-      end: { title: 'Готові <em>почати</em>?', text: 'Терміни вказані для лендингу. Для більших проєктів назву точний план після брифу.', button: 'Почати проєкт' }
+      ask: 'А скільки це коштує?', price: 'Лендинг — від $300. Точну ціну назву після брифу, ще до старту роботи.',
+      deal: 'Супер, давайте почнемо!', start: 'Почати проєкт →', works: 'Подивитися роботи'
     },
     en: {                                                                         // ← ИЗМЕНИТЬ
-      label: 'Process', title: 'How I <em>work</em>', getLabel: 'You get:',
+      label: 'Process', title: 'How I <em>work</em>', online: '● online', day: 'Day',
+      sub: 'From the first message to a finished website — <b>7 days</b>. Here’s how it goes:',
+      hi: 'Hi! I need a website for my studio. How do you work?',
+      reply: 'Hi! I build a site in <b class="hl">7 days</b> — 5 steps, and it’s already getting leads. Here’s how:',
+      step: 'Step', get: 'You get:',
       steps: [
-        { name: 'Intro & brief', time: '1 day', text: 'Message me on Telegram and we briefly discuss the task: niche, goals, timeline and budget. I ask questions to understand your business.', get: 'a clear brief' },
-        { name: 'Structure & price', time: '1–2 days', text: 'I send the site structure block by block, the timeline and the exact price. We agree on everything — and start.', get: 'a site plan and exact price' },
-        { name: 'Design', time: '3–5 days', text: 'First I show the first screen in your style, then the rest once you approve. We discuss changes right away.', get: 'a design you love' },
-        { name: 'Development', time: '3–7 days', text: 'I build the site with animations and a mobile-first layout. You get a link to watch the progress live.', get: 'a live site to review' },
-        { name: 'Launch & support', time: '1 day', text: 'I connect the domain, forms and Telegram leads, and set up SEO. After launch I help with small edits.', get: 'a site on your domain' }
+        { t: 'Day 1', n: 'Intro & brief', d: 'You message me on Telegram — we discuss the task: niche, goals and wishes. Same day I give you the exact price.', g: 'a clear plan and price' },
+        { t: 'Day 2', n: 'Structure & copy', d: 'I send the site structure block by block and the copy. You approve — and I start the design.', g: 'a ready site structure' },
+        { t: 'Days 3–4', n: 'Design', d: 'First I show the first screen in your style, after approval — the rest of the page.', g: 'a design you love' },
+        { t: 'Days 5–6', n: 'Development', d: 'I build the site with animations and mobile layout. You get a link to watch progress live.', g: 'a live site to review' },
+        { t: 'Day 7', n: 'Launch', d: 'I connect the domain, forms and Telegram leads, set up SEO. After launch I help with edits.', g: 'a site on your domain' }
       ],
-      chat: ['Hi! I need a landing page for my studio', 'Hi! Tell me about your clients?'],
-      end: { title: 'Ready to <em>start</em>?', text: 'Timelines are for a landing page. For bigger projects I’ll share an exact plan after the brief.', button: 'Start a project' }
+      ask: 'And how much does it cost?', price: 'A landing page starts at $300. I give the exact price after the brief, before any work starts.',
+      deal: 'Great, let’s start!', start: 'Start a project →', works: 'See my work'
     }
   };
   /* ======================= дальше можно не трогать ======================= */
@@ -2064,57 +1972,39 @@ box-shadow:0 14px 30px -8px rgba(0,0,0,.6)}
   if (!root) return;
   var q = function (s) { return root.querySelector(s); };
   var lang = (window.VLAD_I18N && window.VLAD_I18N.lang) || 'uk';
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var pin = q('.vy-pin'), track = q('.vy-track');
+  var io, ds = [];
 
-  function vis(i, T) {
-    switch (i) {
-      case 0: return '<div class="vy-chat"><p class="in">' + T.chat[0] + '</p><p class="out">' + T.chat[1] + '</p><p class="ty"><i></i><i></i><i></i></p></div>';
-      case 1: return '<div class="vy-wire"><i></i><i></i><i></i><i></i><i></i></div><span class="vy-price">$ ✓</span>';
-      case 2: return '<div class="vy-design"><div class="fr">Aa</div><div class="pal"><i style="background:#6a3dff"></i><i style="background:#b9a5ff"></i><i style="background:#f1eeff"></i><i style="background:#15111f;border:1px solid rgba(255,255,255,.2)"></i></div></div>';
-      case 3: return '<div class="vy-code"><i></i><i></i><i></i><i></i><i></i></div><div class="vy-load"><b></b></div>';
-      default: return '<div class="vy-live"><div class="u">vlad.site</div><svg viewBox="0 0 300 100" preserveAspectRatio="none"><polyline points="0,90 50,80 100,84 150,60 200,52 250,30 300,12"/></svg></div>';
-    }
+  function lightDays() {
+    var last = 0;
+    root.querySelectorAll('.vm-m.on[data-s]').forEach(function (m) { last = Math.max(last, CONFIG.days[+m.getAttribute('data-s')][1]); });
+    ds.forEach(function (d, i) { d.classList.toggle('on', i < last); });
   }
-  var arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-  var steps = [];
+  function reveal(m) { m.classList.add('on'); if (m.hasAttribute('data-s')) lightDays(); }
+
   function render() {
-    var T = CONFIG[lang] || CONFIG.uk, n = T.steps.length;
-    q('.vy-label').textContent = T.label; q('.vy-title').innerHTML = T.title;
-    q('.vy-total').textContent = (n < 10 ? '0' : '') + n;
-    track.innerHTML = T.steps.map(function (s, i) {
-      return '<article class="vy-step"><div class="vy-vis" aria-hidden="true">' + vis(i, T) + '</div><div class="vy-body"><div class="vy-row"><span class="vy-n">0' + (i + 1) + '</span>' +
-        (s.time ? '<span class="vy-time">' + s.time + '</span>' : '') + '</div><h3>' + s.name + '</h3><p>' + s.text + '</p><p class="vy-get"><span>' + T.getLabel + '</span> ' + s.get + '</p></div></article>';
-    }).join('') + '<article class="vy-step vy-end"><h3>' + T.end.title + '</h3><p>' + T.end.text + '</p><a class="vy-btn" href="' + CONFIG.telegram + '" target="_blank" rel="noopener">' + T.end.button + '<i>' + arrow + '</i></a></article>';
-    steps = [].slice.call(track.querySelectorAll('.vy-step:not(.vy-end)'));
-    layout();
-  }
-
-  var span = 0;
-  function layout() {
-    var on = !reduce && innerWidth > 900 && innerHeight >= 640;
-    root.classList.toggle('is-pin', on);
-    track.style.transform = '';
-    if (on) { span = Math.max(0, track.scrollWidth - innerWidth); pin.style.height = (innerHeight + span) + 'px'; }
-    else { span = 0; pin.style.height = ''; }
-    update();
-  }
-  function update() {
-    var p = 0;
-    if (span) { var r = pin.getBoundingClientRect(); p = Math.min(1, Math.max(0, -r.top / Math.max(1, pin.offsetHeight - innerHeight))); track.style.transform = 'translate3d(' + (-p * span).toFixed(1) + 'px,0,0)'; }
-    else {
-      var mid = innerHeight * .55, best = 0;
-      steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < mid) best = i; });
-      p = steps.length > 1 ? best / (steps.length - 1) : 0;
+    var T = CONFIG[lang] || CONFIG.uk;
+    q('.vm-label').textContent = T.label; q('.vm-title').innerHTML = T.title; q('.vm-sub').innerHTML = T.sub; q('.vm-t-on').textContent = T.online;
+    q('.vm-days').innerHTML = [1, 2, 3, 4, 5, 6, 7].map(function (n) { return '<div class="vm-d">' + T.day + '<b>' + n + '</b></div>'; }).join('');
+    ds = [].slice.call(root.querySelectorAll('.vm-d'));
+    var h = '<div class="vm-m c">' + T.hi + '</div><div class="vm-m v">' + T.reply + '</div>';
+    T.steps.forEach(function (x, i) {
+      h += '<div class="vm-m v" data-s="' + i + '"><div class="s">' + T.step + ' 0' + (i + 1) + '<span>' + x.t + '</span></div><h4>' + x.n + '</h4><p>' + x.d + '</p><small>✓ ' + T.get + ' ' + x.g + '</small></div>';
+      if (i === 1) h += '<div class="vm-m c">' + T.ask + '</div><div class="vm-m v">' + T.price + '</div>';
+    });
+    h += '<div class="vm-m c">' + T.deal + '</div><div class="vm-m vm-k"><a href="' + CONFIG.telegram + '" target="_blank" rel="noopener">' + T.start + '</a><a href="#works">' + T.works + '</a></div><div class="vm-m v vm-ty"><i></i><i></i><i></i></div>';
+    q('.vm-b').innerHTML = h;
+    var ms = root.querySelectorAll('.vm-m');
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { ms.forEach(reveal); return; }
+    if (io) io.disconnect();
+    if ('IntersectionObserver' in window) {
+      io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -12% 0px' });
+      ms.forEach(function (m) { io.observe(m); });
     }
-    var i = Math.min(steps.length - 1, Math.round(p * (steps.length - 1)));
-    steps.forEach(function (s, j) { s.classList.toggle('is-on', j === i); });
-    q('.vy-cur').textContent = '0' + (i + 1);
-    q('.vy-bar i').style.transform = 'scaleX(' + Math.max(.04, p) + ')';
+    check();
   }
-  var tick = false;
-  window.addEventListener('scroll', function () { if (tick) return; tick = true; requestAnimationFrame(function () { tick = false; update(); }); }, { passive: true });
-  window.addEventListener('resize', layout);
+  function check() { root.querySelectorAll('.vm-m:not(.on)').forEach(function (m) { if (m.getBoundingClientRect().top < innerHeight * .88) reveal(m); }); }
+  addEventListener('scroll', check, { passive: true });
+
   window.addEventListener('vlad:lang', function (e) { lang = e.detail; render(); });
   render();
 })();
@@ -2925,7 +2815,7 @@ html[data-vtheme="dark"] .vq{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
       help: { initial: 'В', name: 'Влад', status: 'Відповідаю особисто в Telegram', text: 'Не знайшли відповідь? Напишіть мені — розберемося.', button: 'Написати в Telegram' },
       items: [
         { q: 'Скільки коштує сайт і від чого залежить ціна?', a: 'Ціна залежить від типу сайту, кількості блоків чи сторінок, товарів, мов і анімацій. Стартові ціни — у розділі <a href="#services">«Послуги»</a>, а точну вартість я назву після короткого брифу, ще до початку роботи.' },
-        { q: 'Скільки часу займає розробка?', a: 'Залежить від обсягу: лендинг робиться найшвидше, інтернет-магазин — довше. Точний термін я називаю разом із ціною до старту, і ми фіксуємо його в домовленостях.' },
+        { q: 'Скільки часу займає розробка?', a: 'Лендинг чи сайт-візитку я роблю за 7 днів — від брифу до запуску на вашому домені. Для більших проєктів (багатосторінковий сайт, інтернет-магазин) точний термін називаю разом із ціною до старту, і ми фіксуємо його в домовленостях.' },
         { q: 'Чи потрібно мені готувати тексти й фото?', a: 'Якщо вони є — чудово. Якщо ні — допоможу зі структурою й текстами, підкажу, які фото краще підготувати чи де взяти якісні зображення.' },
         { q: 'Чи зможу я сам змінювати тексти, ціни й товари?', a: 'Так. Після запуску покажу, як редагувати сайт: змінювати тексти, фото, ціни й додавати товари без програміста.' },
         { q: 'Як відбувається оплата?', a: 'Працюю за передоплатою: після погодження структури й ціни ви вносите першу частину, залишок — перед запуском сайту. Усе прозоро й поетапно.' },
@@ -2943,7 +2833,7 @@ html[data-vtheme="dark"] .vq{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
       help: { initial: 'V', name: 'Vlad', status: 'I reply personally on Telegram', text: 'Didn’t find an answer? Message me — we’ll figure it out.', button: 'Message me on Telegram' },
       items: [
         { q: 'How much does a website cost, and what affects the price?', a: 'The price depends on the type of site, the number of blocks or pages, products, languages and animations. You’ll find starting prices in <a href="#services">Services</a>, and I’ll give you the exact cost after a short brief, before any work starts.' },
-        { q: 'How long does development take?', a: 'It depends on scope: a landing page is the quickest, an online store takes longer. I give you the exact timeline together with the price before we start, and we put it in our agreement.' },
+        { q: 'How long does development take?', a: 'I build a landing page or a personal site in 7 days — from the brief to launch on your domain. For bigger projects (multi-page site, online store) I give the exact timeline together with the price before we start, and we put it in our agreement.' },
         { q: 'Do I need to prepare copy and photos?', a: 'If you have them — great. If not, I’ll help with the structure and copy and suggest which photos to prepare or where to get quality images.' },
         { q: 'Can I edit texts, prices and products myself?', a: 'Yes. After launch I’ll show you how to edit the site: change texts, photos and prices and add products without a developer.' },
         { q: 'How does payment work?', a: 'I work with a deposit: once we agree on the structure and price, you pay the first part, and the rest before launch. Everything is transparent and step by step.' },

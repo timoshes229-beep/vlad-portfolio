@@ -2005,7 +2005,7 @@ position:relative;padding:120px 32px 120px;background:var(--bg);color:var(--fg);
     <div class="vm-head"><div class="vm-label"></div><h2 class="vm-title"></h2><p class="vm-sub"></p></div>
     <div class="vm-days" aria-hidden="true"></div>
     <div class="vm-ct">
-      <div class="vm-h"><span class="vm-av">v</span><div><b>Влад · vlad.webdesign7</b><small class="vm-t-on"></small></div></div>
+      <div class="vm-h"><span class="vm-av">v</span><div><b class="vm-t-nm"></b><small class="vm-t-on"></small></div></div>
       <div class="vm-b"></div>
     </div>
   </div>
@@ -2022,7 +2022,7 @@ position:relative;padding:120px 32px 120px;background:var(--bg);color:var(--fg);
     /* дни каждого шага на шкале из 7 дней: [с какого, по какой] */
     days: [[1, 1], [2, 2], [3, 4], [5, 6], [7, 7]],
     uk: {                                                                         // ← ИЗМЕНИТЬ
-      label: 'Процес', title: 'Як я <em>працюю</em>', online: '● онлайн', day: 'День',
+      label: 'Процес', title: 'Як я <em>працюю</em>', online: '● онлайн', day: 'День', name: 'Влад · vlad.webdesign7',
       sub: 'Від першого повідомлення до готового сайту — <b>7 днів</b>. Ось як це виглядає:',
       hi: 'Привіт! Хочу сайт для своєї студії. Як ви працюєте?',
       reply: 'Привіт! Роблю сайт за <b class="hl">7 днів</b> — 5 кроків, і він уже приймає заявки. Розповідаю:',
@@ -2038,7 +2038,7 @@ position:relative;padding:120px 32px 120px;background:var(--bg);color:var(--fg);
       deal: 'Супер, давайте почнемо!', start: 'Почати проєкт →', works: 'Подивитися роботи'
     },
     en: {                                                                         // ← ИЗМЕНИТЬ
-      label: 'Process', title: 'How I <em>work</em>', online: '● online', day: 'Day',
+      label: 'Process', title: 'How I <em>work</em>', online: '● online', day: 'Day', name: 'Vlad · vlad.webdesign7',
       sub: 'From the first message to a finished website — <b>7 days</b>. Here’s how it goes:',
       hi: 'Hi! I need a website for my studio. How do you work?',
       reply: 'Hi! I build a site in <b class="hl">7 days</b> — 5 steps, and it’s already getting leads. Here’s how:',
@@ -2071,7 +2071,7 @@ position:relative;padding:120px 32px 120px;background:var(--bg);color:var(--fg);
 
   function render() {
     var T = CONFIG[lang] || CONFIG.uk;
-    q('.vm-label').textContent = T.label; q('.vm-title').innerHTML = T.title; q('.vm-sub').innerHTML = T.sub; q('.vm-t-on').textContent = T.online;
+    q('.vm-label').textContent = T.label; q('.vm-title').innerHTML = T.title; q('.vm-sub').innerHTML = T.sub; q('.vm-t-on').textContent = T.online; q('.vm-t-nm').textContent = T.name;
     q('.vm-days').innerHTML = [1, 2, 3, 4, 5, 6, 7].map(function (n) { return '<div class="vm-d">' + T.day + '<b>' + n + '</b></div>'; }).join('');
     ds = [].slice.call(root.querySelectorAll('.vm-d'));
     var h = '<div class="vm-m c">' + T.hi + '</div><div class="vm-m v">' + T.reply + '</div>';

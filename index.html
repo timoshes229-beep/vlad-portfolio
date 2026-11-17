@@ -930,14 +930,24 @@ background:radial-gradient(55% 50% at 50% 105%,rgba(106,61,255,.85),transparent 
 radial-gradient(35% 30% at 6% 40%,rgba(106,61,255,.22),transparent 70%),linear-gradient(180deg,#07050d 0%,#0e0b16 50%,#170d36 100%)}
 .vl-view::after{content:'';position:absolute;inset:0;opacity:.12;mix-blend-mode:overlay;pointer-events:none;
 background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-.vl-word{position:absolute;left:50%;top:14cqh;transform:translateX(-50%);font-family:'Unbounded',sans-serif;font-weight:800;font-size:min(19cqw,33cqh);line-height:.8;letter-spacing:-.06em;white-space:nowrap}
-.vl-word i{font-style:normal;color:#6a3dff}
+.vl-word{position:absolute;left:0;right:0;top:9cqh;height:40cqh;perspective:2200px;font-family:'Unbounded',sans-serif;font-weight:800;font-size:min(9.6cqw,17cqh);line-height:1;letter-spacing:0;white-space:nowrap}
+.vl-word::before{content:'';position:absolute;left:50%;top:-3cqh;width:min(8cqw,13cqh);height:46cqh;transform:translateX(-50%);border-radius:4px;
+background:linear-gradient(180deg,#6a3dff,#8f6bff 60%,rgba(143,107,255,.15));box-shadow:0 0 80px rgba(106,61,255,.55)}
+.vl-ring{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-6deg)}
+.vl-ring-in{position:absolute;left:0;top:0;transform-style:preserve-3d;animation:vl-spin3d 22s linear infinite}
+@keyframes vl-spin3d{to{transform:rotateY(-360deg)}}
+.vl-ch{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.vl-ch b{position:absolute;left:0;top:0;transform:translate(-50%,-50%);backface-visibility:hidden;-webkit-backface-visibility:hidden;font-weight:800}
+.vl-ch b.f{color:#fff;text-shadow:0 10px 40px rgba(20,8,90,.6)}
+.vl-ch b.b{color:rgba(185,165,255,.28);transform:translate(-50%,-50%) rotateY(180deg)}
+.vl-ch.s b.f{color:#8f6bff}
+@media (prefers-reduced-motion:reduce){ .vl-ring-in{animation:none} }
 .vl-hero{position:absolute;left:50%;top:70cqh;z-index:2;width:min(34cqw,50cqh);aspect-ratio:1;transform:translate(-50%,-50%);mix-blend-mode:lighten;pointer-events:none}
 .vl-hero img{display:block;width:100%;height:100%;object-fit:cover;animation:vl-hfloat 7s ease-in-out infinite;
 -webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
 @keyframes vl-hfloat{50%{transform:translateY(-1.6cqh)}}
 .vl-photo{position:absolute;left:50%;bottom:0;z-index:2;height:88cqh;width:auto;max-width:none;transform:translateX(-50%);filter:drop-shadow(0 30px 50px rgba(20,8,90,.45))}
-.vl-script{position:absolute;right:5cqw;top:46cqh;z-index:4;font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:min(6cqw,10cqh);
+.vl-script{position:absolute;right:5cqw;top:46cqh;z-index:4;font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:min(4.4cqw,8cqh);
 color:var(--hi);white-space:nowrap;transform:rotate(-8deg);text-shadow:0 8px 30px rgba(30,10,90,.35)}
 
 /* продающая часть */
@@ -1024,8 +1034,9 @@ transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .vl-cta svg{width:16px;height:16px}
 
 /* телефон */
-.vl.is-mob .vl-word{top:12cqh;font-size:18cqw}
-.vl.is-mob .vl-script{right:7cqw;top:19.5cqh;font-size:7.5cqw}
+.vl.is-mob .vl-word{top:9cqh;height:20cqh;font-size:9.4cqw}
+.vl.is-mob .vl-word::before{top:-1cqh;height:22cqh;width:11cqw}
+.vl.is-mob .vl-script{right:6cqw;top:27cqh;font-size:6.4cqw}
 .vl.is-mob .vl-hero{top:41cqh;width:66cqw}
 html.has-vfly .vl-hero{visibility:hidden}
 .vl.is-mob .vl-photo{height:62cqh}
@@ -1051,6 +1062,22 @@ html.has-vfly .vl-hero{visibility:hidden}
         <div class="vl-word" aria-hidden="true"></div>
         <div class="vl-hero" aria-hidden="true"><img alt=""></div>
         <div class="vl-script" aria-hidden="true"></div>
+
+        <div class="tw" aria-hidden="true">
+          <i class="tw-x" style="left:4cqw;top:9cqh"></i><i class="tw-x" style="left:36cqw;top:9cqh"></i><i class="tw-x" style="left:63cqw;top:9cqh"></i><i class="tw-x" style="right:4cqw;top:9cqh"></i>
+          <i class="tw-x" style="left:4cqw;top:46cqh"></i><i class="tw-x" style="left:36cqw;top:46cqh"></i><i class="tw-x" style="left:63cqw;top:46cqh"></i><i class="tw-x" style="right:4cqw;top:46cqh"></i>
+          <div class="tw-bar"></div>
+          <div class="tw-wel"></div>
+          <div class="tw-word"></div>
+          <div class="tw-row"><span class="tw-name"></span><span class="tw-role"></span></div>
+          <i class="tw-ar l"></i><i class="tw-ar r"></i>
+        </div>
+        <div class="wh" aria-hidden="true"><div class="wh-spin"></div>
+          <div class="wh-hub"><svg viewBox="0 0 200 200"><defs><path id="whc" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+            <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-dasharray="3 6" opacity=".5"/>
+            <text font-family="Manrope" font-size="11" font-weight="800" letter-spacing="3" fill="currentColor"><textPath href="#whc" textLength="490" class="wh-txt"></textPath></text></svg>
+            <span class="wh-me"></span></div>
+        </div>
         <div class="vl-pitch">
           <span class="vl-status"><span class="vl-dot"></span><span class="vl-t-status"></span></span>
           <h1 class="vl-h1"></h1>
@@ -1085,7 +1112,7 @@ html.has-vfly .vl-hero{visibility:hidden}
      Тексты — в двух языках: uk и en.
      ================================================================= */
   var CONFIG = {
-    word: 'VLAD', accent: '.',                       // ← ИЗМЕНИТЬ: большое слово на обложке
+    ringRepeat: 2,                                   // сколько раз слово повторяется по кругу (слово — в uk/en: ring)
     telegram: 'https://t.me/Tim1949',                // ← ИЗМЕНИТЬ: главная кнопка
     image: 'img/hero-1.webp',                        // ← ИЗМЕНИТЬ: картинка по центру обложки (на тёмном фоне — чёрное станет прозрачным)
     photo: '',                                       // ← ИЗМЕНИТЬ: фото БЕЗ ФОНА (PNG/WebP с прозрачностью), например 'img/vlad.webp' — встаёт вместо картинки
@@ -1093,7 +1120,7 @@ html.has-vfly .vl-hero{visibility:hidden}
     pin: 5,                                          // длина блока в экранах прокрутки (больше — медленнее)
 
     uk: {                                                                         // ← ИЗМЕНИТЬ
-      script: 'webdesign7', edit: 'Влад редагує', status: 'Відкритий для нових проєктів',
+      script: 'vlad.webdesign7', ring: 'ПОРТФОЛІО', edit: 'Влад редагує', status: 'Відкритий для нових проєктів',
       title: 'Створюю сайти, які <em>продають</em>',
       sub: 'Лендинги, багатосторінкові сайти та інтернет-магазини з дизайном під ваш бренд. Красиво, швидко й ідеально на телефоні.',
       main: 'Обговорити проєкт', second: 'Дивитися роботи',
@@ -1101,7 +1128,7 @@ html.has-vfly .vl-hero{visibility:hidden}
       hint: 'Гортайте — сайт сховається в ноутбук ↓', cta: 'Усі роботи', open: 'Відкрити сайт ↗'
     },
     en: {                                                                         // ← ИЗМЕНИТЬ
-      script: 'webdesign7', edit: 'Vlad is editing', status: 'Available for new projects',
+      script: 'vlad.webdesign7', ring: 'PORTFOLIO', edit: 'Vlad is editing', status: 'Available for new projects',
       title: 'I build websites that <em>sell</em>',
       sub: 'Landing pages, multi-page websites and online stores designed around your brand. Beautiful, fast and perfect on mobile.',
       main: 'Discuss a project', second: 'See my work',
@@ -1133,7 +1160,6 @@ html.has-vfly .vl-hero{visibility:hidden}
   var N = CONFIG.projects.length;
   root.style.setProperty('--pin', reduce ? 1 : CONFIG.pin);
 
-  q('.vl-word').innerHTML = CONFIG.word + '<i>' + CONFIG.accent + '</i>';
   q('.vl-btn--main').href = CONFIG.telegram;
   if (CONFIG.photo) {
     var ph = new Image(); ph.className = 'vl-photo'; ph.src = CONFIG.photo; ph.alt = '';
@@ -1165,9 +1191,31 @@ html.has-vfly .vl-hero{visibility:hidden}
 
   var check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
   var cur = -1;
+  /* вращающееся слово: буквы стоят по кругу на невидимом цилиндре */
+  function buildRing(word) {
+    var box = q('.vl-word'), chars = [];
+    for (var k = 0; k < CONFIG.ringRepeat; k++) { word.split('').forEach(function (c) { chars.push({ c: c }); }); chars.push({ c: '✦', s: 1 }); }
+    box.innerHTML = '<div class="vl-ring"><div class="vl-ring-in"></div></div>';
+    var inner = box.querySelector('.vl-ring-in'), meas = document.createElement('span');
+    meas.style.cssText = 'position:absolute;visibility:hidden;white-space:pre';
+    box.appendChild(meas);
+    var gap = parseFloat(getComputedStyle(box).fontSize) * .05, total = 0;
+    chars.forEach(function (o) { meas.textContent = o.c; o.w = meas.offsetWidth + gap; total += o.w; });
+    meas.remove();
+    var r = total / (2 * Math.PI), acc = 0;
+    chars.forEach(function (o) {
+      var a = (acc + o.w / 2) / total * 360; acc += o.w;
+      var el = document.createElement('span'); el.className = 'vl-ch' + (o.s ? ' s' : '');
+      el.style.transform = 'rotateY(' + a.toFixed(2) + 'deg) translateZ(' + r.toFixed(1) + 'px)';
+      el.innerHTML = '<b class="f">' + o.c + '</b><b class="b">' + o.c + '</b>';
+      inner.appendChild(el);
+    });
+  }
+
   function render() {
     var T = CONFIG[lang] || CONFIG.uk;
     q('.vl-script').textContent = T.script;
+    buildRing(T.ring);
     q('.vl-t-status').textContent = T.status;
     q('.vl-h1').innerHTML = T.title;
     q('.vl-sub').textContent = T.sub;
@@ -1303,7 +1351,111 @@ html.has-vfly .vl-hero{visibility:hidden}
   window.addEventListener('vlad:lang', function (ev) { lang = ev.detail; render(); });
   render();
   layout();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { buildRing((CONFIG[lang] || CONFIG.uk).ring); });
+  var rT; window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { buildRing((CONFIG[lang] || CONFIG.uk).ring); }, 200); });
   if (fly) requestAnimationFrame(flyLoop);
+})();
+</script>
+
+<style>
+/* ===== ОБЛОЖКА: закрученное «ПОРТФОЛІО», светлая (вариант C)  ← ИЗМЕНИТЬ: data-cv в setCover — a / b / c ===== */
+#intro .tw,#intro .wh{display:none}
+#intro[data-cv] .tw{--twc:#fff;display:block;position:absolute;inset:0;z-index:2;pointer-events:none;color:#fff}
+#intro[data-cv] :is(.vl-word,.vl-script){display:none}
+.tw-x{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;opacity:.45}
+.tw-x::before,.tw-x::after{content:'';position:absolute;left:50%;top:0;width:1px;height:100%;background:currentColor}
+.tw-x::after{left:0;top:50%;width:100%;height:1px}
+.tw-bar{position:absolute;left:50%;top:9cqh;width:min(10cqw,17cqh);height:37cqh;transform:translateX(-50%);background:linear-gradient(180deg,#7a52ff,#6a3dff);box-shadow:0 30px 90px -20px rgba(106,61,255,.8)}
+.tw-wel{position:absolute;left:9cqw;top:10cqh;font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(11px,1.2cqw,17px);line-height:1.15;letter-spacing:.02em;text-transform:uppercase}
+.tw-word{position:absolute;left:0;right:0;top:27.5cqh;transform:translateY(-50%);text-align:center;white-space:nowrap;perspective:1400px;
+font-family:'Unbounded',sans-serif;font-weight:800;font-size:min(10.5cqw,19cqh);line-height:1;letter-spacing:-.02em}
+.tw-l{display:inline-block;transform-style:preserve-3d}
+.tw-d{position:relative;display:block;transform-style:preserve-3d;animation:tw-roll 7s linear infinite;animation-delay:calc(var(--i) * -.38s)}
+.tw-d b{display:block;font-weight:800;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(.34em)}
+.tw-d b.bk{position:absolute;left:0;top:0;transform:rotateX(180deg) translateZ(.34em);color:var(--twb,#8f6bff)}
+@keyframes tw-roll{to{transform:rotateX(-360deg)}}
+.tw-row{position:absolute;left:9cqw;right:9cqw;top:45cqh;display:flex;justify-content:space-between;font-size:clamp(10px,1cqw,14px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.tw-ar{position:absolute;top:27.5cqh;width:0;height:0;border:7px solid transparent;margin-top:-7px}
+.tw-ar.l{left:3cqw;border-left:10px solid currentColor}
+.tw-ar.r{right:3cqw;border-right:10px solid currentColor}
+
+/* A: тёмная, как сейчас, но с закрученным словом */
+#intro[data-cv="a"] .vl-hero{top:72cqh;width:min(30cqw,44cqh)}
+
+/* B и C: колесо карточек снизу */
+#intro:is([data-cv="b"],[data-cv="c"]) .wh{display:block;position:absolute;left:50%;top:112cqh;z-index:3;width:0;height:0}
+.wh-spin{position:absolute;left:0;top:0;animation:wh-rot 60s linear infinite}
+@keyframes wh-rot{to{transform:rotate(360deg)}}
+.wh-c{position:absolute;left:0;top:0;width:min(12.5cqw,22cqh);aspect-ratio:3/4;margin:calc(min(12.5cqw,22cqh) * -.667) 0 0 calc(min(12.5cqw,22cqh) * -.5);border-radius:14px;overflow:hidden;
+background-size:cover;background-position:50% 0;border:1px solid rgba(255,255,255,.18);box-shadow:0 30px 60px -18px rgba(0,0,0,.7);
+transform:rotate(var(--a)) translateY(calc(min(36cqw,58cqh) * -1))}
+.wh-hub{position:absolute;left:0;top:0;width:min(30cqw,48cqh);aspect-ratio:1;transform:translate(-50%,-50%);color:#fff}
+.wh-hub svg{width:100%;height:100%;animation:wh-rot 40s linear infinite reverse}
+.wh-me{position:absolute;left:50%;top:-1.5cqh;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;font-family:'Unbounded',sans-serif;font-weight:700;font-size:13px}
+.wh-me::before{content:'';border:6px solid transparent;border-bottom:9px solid currentColor;border-top:0}
+#intro:is([data-cv="b"],[data-cv="c"]) :is(.vl-hero,.vl-facts,.vl-hint,.vl-status,.vl-sub){display:none}
+#intro:is([data-cv="b"],[data-cv="c"]) .vl-h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+#intro:is([data-cv="b"],[data-cv="c"]) .vl-pitch{width:auto;bottom:5cqh}
+#intro:is([data-cv="b"],[data-cv="c"]) .vl-btns{margin-top:0;flex-direction:column;align-items:flex-start}
+
+/* C: светлая, как на референсе */
+#intro[data-cv="c"] .vl-view{background:#e6e5ea;color:#111}
+#intro[data-cv="c"] .vl-view::after{opacity:.05}
+#intro[data-cv="c"] .tw,#intro[data-cv="c"] .wh-hub{color:#111;--twc:#111}
+#intro[data-cv="c"] .tw{--twb:#3d1fb0}
+#intro[data-cv="c"] .vl-btn--ghost{color:#111!important;border-color:rgba(0,0,0,.12);background:#fff;box-shadow:0 14px 30px -16px rgba(0,0,0,.35)}
+#intro:is([data-cv="b"]) .vl-btn--ghost{background:rgba(14,11,22,.85)}
+#intro[data-cv="c"] .wh-c{border-color:rgba(0,0,0,.08);box-shadow:0 30px 60px -22px rgba(0,0,0,.45)}
+html.cv-light #vh-hero{--fg:#15121f;--muted:#4a4560;--line:rgba(21,18,31,.14);--soft:rgba(21,18,31,.04);--soft2:rgba(21,18,31,.08);--bd:rgba(21,18,31,.2)}
+
+/* телефон */
+.vl.is-mob .tw-word{top:22cqh;font-size:11cqw}
+.vl.is-mob .tw-bar{top:12cqh;height:22cqh;width:13cqw}
+.vl.is-mob .tw-wel{top:12cqh;left:6cqw;font-size:10px}
+.vl.is-mob .tw-row{top:35cqh;left:6cqw;right:6cqw;font-size:10px}
+.vl.is-mob .tw-ar,.vl.is-mob .tw-x{display:none}
+#intro.is-mob[data-cv="a"] .vl-hero{top:44cqh;width:46cqw}
+#intro.is-mob:is([data-cv="b"],[data-cv="c"]) .wh{top:96cqh}
+.vl.is-mob .wh-c{width:24cqw;margin:calc(24cqw * -.667) 0 0 -12cqw;transform:rotate(var(--a)) translateY(-44cqw)}
+.vl.is-mob .wh-hub{width:46cqw}
+#intro.is-mob:is([data-cv="b"],[data-cv="c"]) .vl-pitch{left:5cqw;right:5cqw;bottom:auto;top:41cqh}
+#intro.is-mob:is([data-cv="b"],[data-cv="c"]) .vl-btns{align-items:stretch}
+@media (prefers-reduced-motion:reduce){ .tw-d,.wh-spin,.wh-hub svg{animation:none} }
+
+/* переключатель */
+</style>
+<script>
+(function () {
+  var root = document.getElementById('intro');
+  var T = { uk: { wel: 'Ласкаво просимо<br>у моє', word: 'ПОРТФОЛІО', name: 'Влад', role: 'Веб-дизайнер', ring: 'ПОРТФОЛІО • VLAD.WEBDESIGN7 • ', me: 'Я' },
+            en: { wel: 'Welcome<br>to my', word: 'PORTFOLIO', name: 'Vlad', role: 'Web designer', ring: 'PORTFOLIO • VLAD.WEBDESIGN7 • ', me: 'ME' } };
+  var lang = (window.VLAD_I18N && window.VLAD_I18N.lang) || 'uk';
+  var SH = window.VLAD_SHOTS || {}, shots = ['ella', 'syn', 'olya', 'padre', 'vid', 'mareva', 'happy'];
+  function render() {
+    var t = T[lang] || T.uk;
+    root.querySelector('.tw-wel').innerHTML = t.wel;
+    root.querySelector('.tw-name').textContent = t.name; root.querySelector('.tw-role').textContent = t.role;
+    root.querySelector('.tw-word').innerHTML = t.word.split('').map(function (c, i) {
+      return '<span class="tw-l"><span class="tw-d" style="--i:' + i + '"><b>' + c + '</b><b class="bk">' + c + '</b></span></span>';
+    }).join('');
+    root.querySelector('.wh-txt').textContent = t.ring + t.ring;
+    root.querySelector('.wh-me').textContent = t.me;
+  }
+  /* колесо: 14 карточек (сайты по кругу дважды) */
+  var spin = root.querySelector('.wh-spin'), n = 14;
+  for (var i = 0; i < n; i++) {
+    var c = document.createElement('div'); c.className = 'wh-c';
+    c.style.setProperty('--a', (i * 360 / n) + 'deg');
+    c.style.backgroundImage = 'url("' + SH[shots[i % shots.length]] + '")';
+    spin.appendChild(c);
+  }
+  function set(v) {
+    root.setAttribute('data-cv', v);
+    document.documentElement.classList.toggle('cv-light', v === 'c');
+  }
+  window.addEventListener('vlad:lang', function (e) { lang = e.detail; render(); });
+  render();
+  set('c');   // ← вариант обложки: 'a' — тёмная с хромовой «v», 'b' — тёмная с колесом карточек, 'c' — светлая
 })();
 </script>
 <!-- ==================================================================

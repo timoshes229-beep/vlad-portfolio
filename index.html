@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <!-- тема сайта: ставится сразу, до отрисовки (светлая по умолчанию) -->
 <script>document.documentElement.setAttribute('data-vtheme','dark'); /* сайт всегда в одной тёмной теме */</script>
-<script>window.VLAD_SHOTS={padre:"img/padre.webp",ella:"img/elladevil.webp",syn:"img/synergy.webp",happy:"img/happy-finance.webp",mareva:"img/mareva.webp"};</script>
+<script>window.VLAD_SHOTS={padre:"img/padre.webp",ella:"img/elladevil.webp",syn:"img/synergy.webp",happy:"img/happy-finance.webp",mareva:"img/mareva.webp",olya:"img/olya.webp",vid:"img/vidchyneno.webp"};</script>
 </head>
 <body>
 <!-- ==================================================================
@@ -1089,7 +1089,7 @@ html.has-vfly .vl-hero{visibility:hidden}
     telegram: 'https://t.me/Tim1949',                // ← ИЗМЕНИТЬ: главная кнопка
     image: 'img/hero-1.webp',                        // ← ИЗМЕНИТЬ: картинка по центру обложки (на тёмном фоне — чёрное станет прозрачным)
     photo: '',                                       // ← ИЗМЕНИТЬ: фото БЕЗ ФОНА (PNG/WebP с прозрачностью), например 'img/vlad.webp' — встаёт вместо картинки
-    fly: true,                                       // ← «v» улетает с обложки в блок «Услуги» (true / false)
+    fly: false,                                      // ← «v» улетает с обложки в блок «Услуги» (true / false)
     pin: 5,                                          // длина блока в экранах прокрутки (больше — медленнее)
 
     uk: {                                                                         // ← ИЗМЕНИТЬ
@@ -1115,7 +1115,9 @@ html.has-vfly .vl-hero{visibility:hidden}
       { name: 'elladevil', image: 'ella', link: 'https://timoshes229-beep.github.io/elladevil/', uk: 'Біжутерія · Рига', en: 'Jewelry · Riga' },
       { name: 'Synergy GK', image: 'syn', link: 'https://timoshes229-beep.github.io/synergy-gk/', uk: 'Воротарські рукавиці', en: 'Goalkeeper gloves' },
       { name: 'Mareva Dental', image: 'mareva', link: 'https://timoshes229-beep.github.io/mareva/', uk: 'Стоматологія · Одеса', en: 'Dental clinic · Odesa' },
-      { name: 'Happy Finance', image: 'happy', link: 'https://timoshes229-beep.github.io/HAPPY-FINANCE/', uk: 'Бухгалтерія для ФОП і ТОВ', en: 'Accounting for businesses' }
+      { name: 'Happy Finance', image: 'happy', link: 'https://timoshes229-beep.github.io/HAPPY-FINANCE/', uk: 'Бухгалтерія для ФОП і ТОВ', en: 'Accounting for businesses' },
+      { name: 'Blog Start', image: 'olya', link: 'https://timoshes229-beep.github.io/olya/', uk: 'Онлайн-інтенсив із блогінгу', en: 'Blogging online course' },
+      { name: 'ВІДЧИНЕНО', image: 'vid', link: 'https://timoshes229-beep.github.io/vidchyneno/', uk: 'Запуск закладів під ключ', en: 'Turnkey restaurant launch' }
     ]
   };
   /* ======================= дальше можно не трогать ======================= */
@@ -1568,19 +1570,22 @@ background:radial-gradient(closest-side,rgba(106,61,255,.3),transparent)}
 .vz-sub{position:absolute;left:50%;top:50%;z-index:1;width:min(320px,80vw);transform:translate(-50%,-50%);text-align:center;font-size:12.5px;font-weight:700;letter-spacing:.12em;line-height:1.6;text-transform:uppercase;color:var(--muted)}
 .vz-scene{position:absolute;inset:0;z-index:2;perspective:1300px;transform-style:preserve-3d;pointer-events:none}
 .vz-c{position:absolute;left:50%;top:50%;width:var(--cw,320px);aspect-ratio:16/10;margin:calc(var(--cw,320px) * -.3125) 0 0 calc(var(--cw,320px) * -.5);border-radius:12px;overflow:hidden;
-background-color:#0b0912;background-size:100% auto;background-repeat:no-repeat;border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);
+background-color:#0b0912;background-size:cover;background-position:50% 0;background-repeat:no-repeat;border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);
 will-change:transform;backface-visibility:hidden;transition:box-shadow .3s,border-color .3s}
-.vz.is-fan .vz-c{pointer-events:auto;cursor:pointer}
+.vz-c{pointer-events:auto;cursor:pointer}
 .vz-c.is-hot{border-color:rgba(143,107,255,.85);box-shadow:0 40px 90px -16px rgba(106,61,255,.7)}
-.vz-info{position:absolute;left:50%;bottom:5vh;z-index:4;display:flex;align-items:center;gap:16px;padding:12px 12px 12px 20px;border-radius:999px;transform:translate(-50%,20px);
-background:rgba(21,17,31,.88);border:1px solid var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.vz-info{position:absolute;left:50%;bottom:4vh;z-index:4;display:flex;align-items:center;gap:20px;width:min(760px,92vw);padding:16px 16px 16px 22px;border-radius:22px;transform:translate(-50%,20px);
+background:rgba(21,17,31,.9);border:1px solid var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
 .vz.is-fan .vz-info{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.vz-it{flex:1;min-width:0;display:grid;gap:6px}
+.vz-ih{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.vz-it p{font-size:13.5px;line-height:1.5;color:#d6d0ea}
 .vz-info b{font-family:'Unbounded',sans-serif;font-size:16px;letter-spacing:-.02em}
 .vz-info span{font-size:13.5px;color:var(--muted)}
 .vz-info i{padding:4px 10px;border-radius:999px;background:rgba(143,107,255,.16);border:1px solid rgba(143,107,255,.4);font-style:normal;font-size:11.5px;font-weight:800;color:#d9ccff}
-.vz-info a{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;background:var(--ac0);font-size:14px;font-weight:700}
+.vz-info a{flex:none;display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:var(--ac0);font-size:14px;font-weight:700;white-space:nowrap}
 .vz-info a:hover{background:#7a52ff}
-.vz-hint{position:absolute;left:50%;bottom:calc(5vh + 74px);z-index:4;transform:translateX(-50%);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .4s}
+.vz-hint{position:absolute;left:50%;bottom:calc(4vh + 130px);z-index:4;transform:translateX(-50%);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .4s}
 .vz.is-fan .vz-hint{opacity:1}
 
 /* телефон: без закрепления */
@@ -1592,7 +1597,8 @@ background:rgba(21,17,31,.88);border:1px solid var(--line);-webkit-backdrop-filt
 .vz-mt em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:var(--ac)}
 .vz.is-mob .vz-mt{display:block}
 .vz.is-mob .vz-scene{position:relative;height:310px;margin-top:10px}
-.vz.is-mob .vz-info{position:relative;left:auto;bottom:auto;transform:none;margin:8px 16px 0;flex-wrap:wrap;justify-content:center;border-radius:22px;white-space:normal;text-align:center;opacity:1;pointer-events:auto}
+.vz.is-mob .vz-info{position:relative;left:auto;bottom:auto;width:auto;transform:none;margin:8px 16px 0;flex-direction:column;align-items:stretch;text-align:left;opacity:1;pointer-events:auto}
+.vz.is-mob .vz-info a{justify-content:center}
 .vz.is-mob .vz-hint{position:relative;left:auto;bottom:auto;transform:none;margin-top:6px;text-align:center;opacity:1}
 @media (prefers-reduced-motion:reduce){ .vz-c{transition:none} }
 </style>
@@ -1623,22 +1629,38 @@ background:rgba(21,17,31,.88);border:1px solid var(--line);-webkit-backdrop-filt
     uk: {                                                                         // ← ИЗМЕНИТЬ
       label: 'Роботи', w1: 'Мої', w2: '<em>проєкти</em>', title: 'Мої <em>проєкти</em>',
       sub: 'Концепти й навчальні проєкти — живі сайти, які можна відкрити',
-      hint: 'Наведіть на картку · натисніть, щоб відкрити', hintMob: 'Натисніть на картку', open: 'Відкрити сайт ↗', badges: { concept: 'Концепт', pitch: 'Конкурсна робота' }
+      hint: 'Натисніть на проєкт, щоб дізнатися більше', hintMob: 'Натисніть на проєкт', open: 'Відкрити сайт ↗', badges: { concept: 'Концепт', pitch: 'Конкурсна робота' }
     },
     en: {                                                                         // ← ИЗМЕНИТЬ
       label: 'Work', w1: 'My', w2: '<em>projects</em>', title: 'My <em>projects</em>',
       sub: 'Concepts and study projects — live websites you can open',
-      hint: 'Hover a card · click to open', hintMob: 'Tap a card', open: 'Open site ↗', badges: { concept: 'Concept', pitch: 'Pitch project' }
+      hint: 'Click a project to learn more', hintMob: 'Tap a project', open: 'Open site ↗', badges: { concept: 'Concept', pitch: 'Pitch project' }
     },
     /* ПРОЕКТЫ. image — ключ из VLAD_SHOTS (или ссылка на длинный скриншот), link — живой сайт.
        badge — 'concept' (концепт), 'pitch' (конкурсна робота) или '' (реальний клієнт).
-       crops — какие места длинного скриншота показать на карточках (0 — верх, 1 — низ). */
+       Клик по карточке — выбрать проект (описание и кнопка снизу). */
     projects: [
-      { name: 'PADRE Barbershop', image: 'padre', link: 'https://gorgeous-cassata-2d0ce3.netlify.app/', badge: 'concept', crops: [0, .38], uk: 'Барбершоп · Одеса', en: 'Barbershop · Odesa' },
-      { name: 'elladevil', image: 'ella', link: 'https://timoshes229-beep.github.io/elladevil/', badge: 'concept', crops: [0, .3], uk: 'Біжутерія · Рига', en: 'Jewelry · Riga' },
-      { name: 'Synergy GK', image: 'syn', link: 'https://timoshes229-beep.github.io/synergy-gk/', badge: 'concept', crops: [0, .22], uk: 'Воротарські рукавиці', en: 'Goalkeeper gloves' },
-      { name: 'Mareva Dental', image: 'mareva', link: 'https://timoshes229-beep.github.io/mareva/', badge: 'concept', crops: [0, .25], uk: 'Стоматологія · Одеса', en: 'Dental clinic · Odesa' },
-      { name: 'Happy Finance', image: 'happy', link: 'https://timoshes229-beep.github.io/HAPPY-FINANCE/', badge: 'pitch', crops: [0, .33], uk: 'Бухгалтерія для ФОП і ТОВ', en: 'Accounting for businesses' }
+      { name: 'elladevil', image: 'ella', link: 'https://timoshes229-beep.github.io/elladevil/', badge: 'concept',
+        uk: { niche: 'Біжутерія · Рига', desc: 'Лендинг для бренду біжутерії: перший екран із вау-ефектом, ціни в євро й доставка по всьому світу.' },
+        en: { niche: 'Jewelry · Riga', desc: 'A landing page for a jewelry brand: a wow first screen, prices in euros and worldwide shipping.' } },
+      { name: 'Synergy GK', image: 'syn', link: 'https://timoshes229-beep.github.io/synergy-gk/', badge: 'concept',
+        uk: { niche: 'Воротарські рукавиці', desc: 'Інтернет-магазин воротарських рукавиць: каталог, порівняння, підбір розміру за 10 секунд і міні-гра зі знижкою.' },
+        en: { niche: 'Goalkeeper gloves', desc: 'An online store for goalkeeper gloves: catalog, comparison, a 10-second size finder and a discount mini-game.' } },
+      { name: 'Blog Start', image: 'olya', link: 'https://timoshes229-beep.github.io/olya/', badge: 'concept',
+        uk: { niche: 'Онлайн-інтенсив із блогінгу', desc: 'Лендинг інтенсиву «Свій блог за 7 днів»: програма по днях, авторка, тарифи й запис на потік.' },
+        en: { niche: 'Blogging online course', desc: 'A landing page for the “Your blog in 7 days” intensive: day-by-day program, the author, pricing and sign-up.' } },
+      { name: 'PADRE Barbershop', image: 'padre', link: 'https://gorgeous-cassata-2d0ce3.netlify.app/', badge: 'concept',
+        uk: { niche: 'Барбершоп · Одеса', desc: 'Сайт для барбершопу: підбір стрижки, послуги й ціни, майстри, фото до і після та онлайн-запис.' },
+        en: { niche: 'Barbershop · Odesa', desc: 'A barbershop website: haircut finder, services and prices, barbers, before & after photos and online booking.' } },
+      { name: 'ВІДЧИНЕНО', image: 'vid', link: 'https://timoshes229-beep.github.io/vidchyneno/', badge: 'concept',
+        uk: { niche: 'Запуск закладів під ключ', desc: 'Лендинг для запуску кафе й ресторанів під ключ: інтерактивні «двері», формати закладів, етапи й вартість.' },
+        en: { niche: 'Turnkey restaurant launch', desc: 'A landing page for launching cafés and restaurants turnkey: interactive “doors”, venue formats, stages and pricing.' } },
+      { name: 'Mareva Dental', image: 'mareva', link: 'https://timoshes229-beep.github.io/mareva/', badge: 'concept',
+        uk: { niche: 'Стоматологія · Одеса', desc: 'Лендинг сімейної стоматології: 3D-модель імпланту, слайдер «до/після», калькулятор ціни й квіз.' },
+        en: { niche: 'Dental clinic · Odesa', desc: 'A family dental clinic landing page: a 3D implant, before/after slider, price calculator and a quiz.' } },
+      { name: 'Happy Finance', image: 'happy', link: 'https://timoshes229-beep.github.io/HAPPY-FINANCE/', badge: 'pitch',
+        uk: { niche: 'Бухгалтерія для ФОП і ТОВ', desc: 'Лендинг бухгалтерської компанії: послуги для ФОП і ТОВ, експрес-перевірка ризиків і податковий календар.' },
+        en: { niche: 'Accounting for businesses', desc: 'An accounting firm landing page: services for sole proprietors and LLCs, a risk check and a tax calendar.' } }
     ]
   };
   /* ======================= дальше можно не трогать ======================= */
@@ -1652,32 +1674,26 @@ background:rgba(21,17,31,.88);border:1px solid var(--line);-webkit-backdrop-filt
   var pin = q('.vz-pin'), st = q('.vz-sticky'), scene = q('.vz-scene'), w1 = q('.vz-w1'), w2 = q('.vz-w2'), sub = q('.vz-sub');
   var P = CONFIG.projects;
 
-  /* карточки: на компьютере по 2 на проект (разные места скриншота), на телефоне по одной */
+  /* карточки: по одной на проект. Клик выбирает проект, наведение — подсвечивает */
   var cards = [], mob = false, hot = -1, sel = -1;
   function build() {
     scene.innerHTML = ''; cards = [];
-    var per = mob ? 1 : 2, order = [];
-    for (var k = 0; k < per; k++) P.forEach(function (p, i) { order.push({ i: i, crop: p.crops[k] || 0 }); });
-    order.forEach(function (o, n) {
-      var p = P[o.i], el = document.createElement('div');
-      el.className = 'vz-c'; el.setAttribute('role', 'link'); el.setAttribute('aria-label', p.name);
+    P.forEach(function (p, n) {
+      var el = document.createElement('button'); el.type = 'button';
+      el.className = 'vz-c'; el.setAttribute('aria-label', p.name);
       el.style.backgroundImage = 'url("' + (SH[p.image] || p.image) + '")';
-      el.style.backgroundPosition = '50% ' + (o.crop * 100) + '%';
-      el.addEventListener('mouseenter', function () { if (!mob) { hot = n; info(o.i); } });
-      el.addEventListener('mouseleave', function () { if (!mob) hot = -1; });
-      el.addEventListener('click', function () {
-        if (mob && sel !== n) { sel = n; info(o.i); return; }
-        if (root.classList.contains('is-fan') || mob) window.open(p.link, '_blank', 'noopener');
-      });
-      scene.appendChild(el); cards.push({ el: el, i: o.i });
+      el.addEventListener('mouseenter', function () { if (!mob) { hot = n; info(n); } });
+      el.addEventListener('mouseleave', function () { if (!mob) { hot = -1; info(sel); } });
+      el.addEventListener('click', function () { sel = n; info(n); });
+      scene.appendChild(el); cards.push({ el: el, i: n });
     });
-    if (mob) { sel = Math.floor(cards.length / 2); info(cards[sel].i); }
-    else info(cards[Math.floor(cards.length / 2)].i);
+    if (sel < 0) sel = Math.floor(cards.length / 2);
+    info(sel);
   }
   function info(i) {
-    var T = CONFIG[lang] || CONFIG.uk, p = P[i];
-    q('.vz-info').innerHTML = '<b>' + p.name + '</b>' + (p.badge ? '<i>' + T.badges[p.badge] + '</i>' : '') + '<span>' + (p[lang] || p.uk) + '</span>' +
-      '<a href="' + p.link + '" target="_blank" rel="noopener">' + T.open + '</a>';
+    var T = CONFIG[lang] || CONFIG.uk, p = P[i], t = p[lang] || p.uk;
+    q('.vz-info').innerHTML = '<div class="vz-it"><div class="vz-ih"><b>' + p.name + '</b>' + (p.badge ? '<i>' + T.badges[p.badge] + '</i>' : '') + '<span>' + t.niche + '</span></div>' +
+      '<p>' + t.desc + '</p></div><a href="' + p.link + '" target="_blank" rel="noopener">' + T.open + '</a>';
   }
   function render() {
     var T = CONFIG[lang] || CONFIG.uk;
@@ -1694,7 +1710,7 @@ background:rgba(21,17,31,.88);border:1px solid var(--line);-webkit-backdrop-filt
     var m = innerWidth < 760 || reduce;
     if (m !== mob || !cards.length) { mob = m; root.classList.toggle('is-mob', mob); build(); render(); }
     var W = st.clientWidth, H = mob ? 310 : st.clientHeight;
-    var cw = mob ? Math.min(W * .5, 220) : Math.min(W * .18, H * .38, 300);
+    var cw = mob ? Math.min(W * .5, 220) : Math.min(W * .2, H * .4, 320);
     G = { W: W, H: H, cw: cw };
     root.style.setProperty('--cw', cw + 'px');
     update();
@@ -1702,14 +1718,14 @@ background:rgba(21,17,31,.88);border:1px solid var(--line);-webkit-backdrop-filt
 
   /* лента: карточки идут по 3D-волне; веер: карточки по дуге */
   function ribbon(n, N, s) {
-    var u = (n - (N - 1) / 2) * 1.05 - s, a = u * .62;
+    var u = (n - (N - 1) / 2) * 1.12 - s, a = u * .62;
     return { x: u * G.cw * .98, y: Math.sin(a) * G.H * .16, z: Math.cos(a) * 160 - 220, rx: Math.cos(a) * 14, ry: -Math.sin(a) * 38, rz: Math.sin(a * .5) * 6, sc: 1 };
   }
   function fan(n, N) {
-    var spread = mob ? 46 : 80, ang = N > 1 ? (n / (N - 1) - .5) * spread : 0, R = mob ? G.W * .78 : Math.min(G.W * .52, G.H * 1.2);
+    var spread = mob ? 50 : 76, ang = N > 1 ? (n / (N - 1) - .5) * spread : 0, R = mob ? G.W * .78 : Math.min(G.W * .52, G.H * 1.2);
     var cy = mob ? G.H * .5 + R : G.H * .5 + R - G.H * .02, rad = ang * Math.PI / 180;
-    var lift = (mob ? n === sel : n === hot) ? 34 : 0;
-    return { x: Math.sin(rad) * (R + lift), y: cy - Math.cos(rad) * (R + lift) - G.H / 2, z: lift ? 60 : n * .5, rx: 0, ry: 0, rz: ang, sc: (mob ? n === sel : n === hot) ? 1.06 : .96 };
+    var on = n === hot || n === sel, lift = on ? 34 : 0;
+    return { x: Math.sin(rad) * (R + lift), y: cy - Math.cos(rad) * (R + lift) - G.H / 2, z: n === hot ? 80 : lift ? 60 : n * .5, rx: 0, ry: 0, rz: ang, sc: on ? 1.06 : .96 };
   }
   var cur = [];
   function update() {
@@ -1736,14 +1752,14 @@ background:rgba(21,17,31,.88);border:1px solid var(--line);-webkit-backdrop-filt
       var vis = mob ? 1 : cl((p - .02) / .06);
       c.el.style.transform = 'translate3d(' + o.x.toFixed(1) + 'px,' + o.y.toFixed(1) + 'px,' + o.z.toFixed(1) + 'px) rotateX(' + o.rx.toFixed(2) + 'deg) rotateY(' + o.ry.toFixed(2) + 'deg) rotateZ(' + o.rz.toFixed(2) + 'deg) scale(' + o.sc.toFixed(3) + ')';
       c.el.style.opacity = vis;
-      c.el.style.zIndex = (mob ? (n === sel ? 50 : 10 + n) : (hot === n ? 99 : Math.round(o.z + 400)));
-      c.el.classList.toggle('is-hot', mob ? n === sel : n === hot);
+      c.el.style.zIndex = n === hot ? 99 : n === sel ? 98 : Math.round(o.z + 400);
+      c.el.classList.toggle('is-hot', n === hot || n === sel);
     });
   }
   function loop() { update(); requestAnimationFrame(loop); }
 
   window.addEventListener('resize', layout);
-  window.addEventListener('vlad:lang', function (e) { lang = e.detail; render(); info(cards[mob ? sel : Math.floor(cards.length / 2)].i); });
+  window.addEventListener('vlad:lang', function (e) { lang = e.detail; render(); info(sel); });
   layout();
   requestAnimationFrame(loop);
 })();
@@ -2095,7 +2111,7 @@ html[data-vtheme="dark"] .va{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
     photo: 'img/hero-1.webp',                        // ← ИЗМЕНИТЬ: ссылка на твоё фото (квадратное). Пусто — буква в фигуре
     tools: ['Tilda', 'HTML / CSS / JS', 'GitHub Pages', 'Netlify'],  // ← ИЗМЕНИТЬ: общие для обоих языков инструменты
     /* Счётчики: value — число (докручивается), suffix — после числа. Подписи — в uk / en. */
-    stats: [ { value: 1, suffix: '' }, { value: 100, suffix: '%' }, { value: 5, suffix: '' }, { value: 24, suffix: '/7' } ],
+    stats: [ { value: 1, suffix: '' }, { value: 100, suffix: '%' }, { value: 7, suffix: '' }, { value: 24, suffix: '/7' } ],
     icons: ['person', 'brand', 'phone', 'edit', 'speed', 'steps'],   // иконки преимуществ по порядку
 
     uk: {                                                                         // ← ИЗМЕНИТЬ
@@ -2930,16 +2946,7 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
 .vf ul{list-style:none}
 .vf-inner{max-width:1320px;margin:0 auto;padding:0 40px}
 
-/* большая бегущая строка */
-.vf-big{padding:56px 0 40px;overflow:hidden;border-bottom:1px solid var(--line)}
-.vf-big-track{display:flex;align-items:center;width:max-content;animation:vf-marq 28s linear infinite}
-.vf-big:hover .vf-big-track{animation-play-state:paused}
-.vf-big span{padding:0 30px;font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(46px,7.5vw,118px);line-height:1.1;letter-spacing:-.01em;white-space:nowrap;
   color:rgba(241,238,255,.26);transition:color .4s}
-.vf-big span:hover{color:var(--fg)}
-.vf-big span.f{color:var(--ac)}
-.vf-big span.s{padding:0;color:rgba(241,238,255,.5);font-family:'Manrope',sans-serif;font-style:normal;font-size:clamp(22px,3vw,40px)}
-@keyframes vf-marq{to{transform:translateX(-50%)}}
 
 /* призыв + форма */
 .vf-main{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;padding:100px 0}
@@ -3063,7 +3070,6 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
 }
 @media (max-width:760px){
   .vf-inner{padding:0 20px}
-  .vf-big{padding:40px 0 28px}
   .vf-form{padding:26px 20px}
   .vf-fields{grid-template-columns:1fr}
   .vf-foot-top{flex-direction:column}
@@ -3133,7 +3139,6 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
 </style>
 
 <section class="vf" id="contacts" aria-label="Contacts">
-  <div class="vf-big" aria-hidden="true"><div class="vf-big-track"></div></div>
 
   <div class="vf-inner">
     <div class="vf-main">
@@ -3290,10 +3295,6 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
 
   function render() {
     var t = T(), F = t.form;
-    // большая бегущая строка
-    var half = '';
-    for (var k = 0; k < 2; k++) t.bigText.forEach(function (w, i) { half += '<span' + (i === 1 ? ' class="f"' : '') + '>' + w + '</span><span class="s">✦</span>'; });
-    q('.vf-big-track').innerHTML = half + half;
 
     q('.vf-label').textContent = t.label;
     q('.vf-lead').textContent = t.lead;

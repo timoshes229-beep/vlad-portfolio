@@ -1544,95 +1544,72 @@ padding:8%;display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:end;box
 
 <!-- ==================================================================
      ВЛАД · БЛОК 3 «ПОРТФОЛИО» — для Tilda, блок T123 «HTML-код»
-     Сайты стоят по кругу в перспективе: круг можно тянуть мышкой/пальцем,
-     листать стрелками, а по клику выбранный сайт выезжает вперёд.
+     Компьютер: заголовок разъезжается, между словами проплывает 3D-лента
+     из скриншотов сайтов, потом карточки раскладываются веером по дуге.
+     Наведите на карточку — она приподнимется, клик откроет сайт.
+     Телефон: веер из карточек, тап выбирает сайт.
      Все тексты, ссылки и картинки меняются в CONFIG в начале <script>.
      Ищи пометки  ← ИЗМЕНИТЬ
      Якорь блока: #works
      ================================================================== -->
 <style>
-.vo{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6bff;--ac0:#6a3dff;--card:#15111f;--line:rgba(241,238,255,.09);
-position:relative;padding:120px 0 100px;background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
-.vo *,.vo *::before,.vo *::after{box-sizing:border-box;margin:0;padding:0}
-.vo a{color:inherit;text-decoration:none}
-.vo::before{content:'';position:absolute;left:50%;top:38%;width:min(1200px,110vw);height:620px;transform:translate(-50%,-50%);pointer-events:none;
-background:radial-gradient(closest-side,rgba(106,61,255,.32),transparent)}
-.vo-in{position:relative;max-width:1320px;margin:0 auto;padding:0 32px}
-.vo-head{text-align:center}
-.vo-label{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
-.vo-label::before,.vo-label::after{content:'';width:26px;height:2px;background:currentColor}
-.vo-title{margin-top:14px;font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,3.8vw,58px);line-height:1.04;letter-spacing:-.035em}
-.vo-title em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.01em;color:var(--ac)}
-.vo-lead{max-width:560px;margin:14px auto 0;font-size:16px;line-height:1.6;color:var(--muted)}
+.vz{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6bff;--ac0:#6a3dff;--card:#15111f;--line:rgba(241,238,255,.09);
+position:relative;background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.vz *,.vz *::before,.vz *::after{box-sizing:border-box;margin:0;padding:0}
+.vz a{color:inherit;text-decoration:none}
+.vz-pin{position:relative;height:420vh}
+.vz-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.vz-glow{position:absolute;left:50%;top:55%;width:min(1300px,120vw);height:80vh;transform:translate(-50%,-50%);pointer-events:none;
+background:radial-gradient(closest-side,rgba(106,61,255,.3),transparent)}
+.vz-label{position:absolute;left:50%;top:13vh;z-index:3;transform:translateX(-50%);display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);white-space:nowrap}
+.vz-label::before,.vz-label::after{content:'';width:26px;height:2px;background:currentColor}
+.vz-w{position:absolute;left:0;top:0;z-index:1;font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(56px,11vw,190px);line-height:.9;letter-spacing:-.05em;white-space:nowrap;will-change:transform}
+.vz-w em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.02em;color:var(--ac)}
+.vz-sub{position:absolute;left:50%;top:50%;z-index:1;width:min(320px,80vw);transform:translate(-50%,-50%);text-align:center;font-size:12.5px;font-weight:700;letter-spacing:.12em;line-height:1.6;text-transform:uppercase;color:var(--muted)}
+.vz-scene{position:absolute;inset:0;z-index:2;perspective:1300px;transform-style:preserve-3d;pointer-events:none}
+.vz-c{position:absolute;left:50%;top:50%;width:var(--cw,320px);aspect-ratio:16/10;margin:calc(var(--cw,320px) * -.3125) 0 0 calc(var(--cw,320px) * -.5);border-radius:12px;overflow:hidden;
+background-color:#0b0912;background-size:100% auto;background-repeat:no-repeat;border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);
+will-change:transform;backface-visibility:hidden;transition:box-shadow .3s,border-color .3s}
+.vz.is-fan .vz-c{pointer-events:auto;cursor:pointer}
+.vz-c.is-hot{border-color:rgba(143,107,255,.85);box-shadow:0 40px 90px -16px rgba(106,61,255,.7)}
+.vz-info{position:absolute;left:50%;bottom:5vh;z-index:4;display:flex;align-items:center;gap:16px;padding:12px 12px 12px 20px;border-radius:999px;transform:translate(-50%,20px);
+background:rgba(21,17,31,.88);border:1px solid var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.vz.is-fan .vz-info{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.vz-info b{font-family:'Unbounded',sans-serif;font-size:16px;letter-spacing:-.02em}
+.vz-info span{font-size:13.5px;color:var(--muted)}
+.vz-info i{padding:4px 10px;border-radius:999px;background:rgba(143,107,255,.16);border:1px solid rgba(143,107,255,.4);font-style:normal;font-size:11.5px;font-weight:800;color:#d9ccff}
+.vz-info a{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;background:var(--ac0);font-size:14px;font-weight:700}
+.vz-info a:hover{background:#7a52ff}
+.vz-hint{position:absolute;left:50%;bottom:calc(5vh + 74px);z-index:4;transform:translateX(-50%);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .4s}
+.vz.is-fan .vz-hint{opacity:1}
 
-/* круг */
-.vo-stage{position:relative;height:min(54vw,560px);margin-top:20px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
-.vo-stage.is-drag{cursor:grabbing}
-.vo-floor{position:absolute;left:50%;top:70%;width:min(86vw,1000px);height:min(20vw,200px);transform:translate(-50%,-50%);border-radius:50%;
-border:1px solid rgba(185,165,255,.16);background:radial-gradient(closest-side,rgba(106,61,255,.18),transparent)}
-.vo-item{position:absolute;left:50%;top:50%;width:min(44vw,460px);margin-left:calc(min(44vw,460px) / -2);will-change:transform,opacity}
-.vo-win{border-radius:14px;overflow:hidden;background:#0b0912;border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 80px -24px rgba(0,0,0,.85);transition:border-color .4s,box-shadow .4s}
-.vo-item.is-front .vo-win{border-color:rgba(143,107,255,.7);box-shadow:0 40px 100px -20px rgba(106,61,255,.55)}
-.vo-bar{display:flex;align-items:center;gap:6px;height:28px;padding:0 12px;background:#141020}
-.vo-bar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22)}
-.vo-bar span{margin-left:10px;padding:2px 10px;border-radius:6px;background:rgba(255,255,255,.07);font-size:11px;color:#cfc8ea;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.vo-shot{position:relative;aspect-ratio:16/10;overflow:hidden}
-.vo-shot img{display:block;width:100%;height:auto;pointer-events:none;transition:transform 7s cubic-bezier(.45,0,.2,1)}
-.vo-item.is-front:hover .vo-shot img{transform:translateY(calc(-100% + min(27.5vw,287px)))}
-.vo-open{position:absolute;right:12px;bottom:12px;padding:8px 13px;border-radius:999px;background:rgba(14,11,22,.85);font-size:12.5px;font-weight:700;opacity:0;transform:translateY(6px);transition:.3s}
-.vo-item.is-front:hover .vo-open{opacity:1;transform:none}
-.vo-hint{margin-top:6px;text-align:center;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-
-/* описание выбранного сайта */
-.vo-info{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;max-width:980px;margin:30px auto 0;padding:24px 26px;border-radius:22px;background:var(--card);border:1px solid var(--line)}
-.vo-nav{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:none;color:var(--fg);cursor:pointer;transition:background .3s,border-color .3s}
-.vo-nav:hover{background:var(--ac0);border-color:var(--ac0)}
-.vo-nav svg{width:18px;height:18px}
-.vo-meta{display:grid;gap:8px;min-width:0}
-.vo-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
-.vo-num{font-family:'Unbounded',sans-serif;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-.vo-num b{color:var(--ac)}
-.vo-badge{padding:4px 10px;border-radius:999px;background:rgba(143,107,255,.16);border:1px solid rgba(143,107,255,.4);font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#d9ccff}
-.vo-name{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(20px,2vw,28px);letter-spacing:-.025em;line-height:1.15}
-.vo-niche{font-size:14px;color:var(--muted)}
-.vo-desc{font-size:15px;line-height:1.55;color:#d6d0ea}
-.vo-tags{display:flex;flex-wrap:wrap;gap:6px}
-.vo-tags span{padding:5px 11px;border-radius:999px;border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--muted)}
-.vo-go{display:inline-flex;align-items:center;gap:10px;justify-self:start;margin-top:4px;padding:11px 18px;border-radius:999px;background:var(--ac0);font-size:14px;font-weight:700;transition:background .3s}
-.vo-go:hover{background:#7a52ff}
-.vo-swap{animation:vo-swap .5s cubic-bezier(.2,.8,.2,1)}
-@keyframes vo-swap{from{opacity:0;transform:translateY(10px)}}
-
-@media (max-width:760px){
-  .vo{padding:96px 0 80px}
-  .vo-in{padding:0 16px}
-  .vo-stage{height:300px}
-  .vo-item{width:72vw;margin-left:-36vw}
-  .vo-info{grid-template-columns:1fr;padding:20px;gap:16px}
-  .vo-info .vo-nav{display:none}
-  .vo-navs{display:flex!important;justify-content:center;gap:12px;margin-top:16px}
-}
-.vo-navs{display:none}
-@media (prefers-reduced-motion:reduce){ .vo *{transition:none!important;animation:none!important} }
+/* телефон: без закрепления */
+.vz.is-mob .vz-pin{height:auto}
+.vz.is-mob .vz-sticky{position:relative;height:auto;padding:96px 0 70px}
+.vz.is-mob .vz-label{position:relative;left:auto;top:auto;transform:none;display:flex;justify-content:center}
+.vz.is-mob .vz-w,.vz.is-mob .vz-sub{display:none}
+.vz-mt{display:none;margin-top:14px;text-align:center;font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,9vw,44px);line-height:1.05;letter-spacing:-.035em}
+.vz-mt em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:var(--ac)}
+.vz.is-mob .vz-mt{display:block}
+.vz.is-mob .vz-scene{position:relative;height:310px;margin-top:10px}
+.vz.is-mob .vz-info{position:relative;left:auto;bottom:auto;transform:none;margin:8px 16px 0;flex-wrap:wrap;justify-content:center;border-radius:22px;white-space:normal;text-align:center;opacity:1;pointer-events:auto}
+.vz.is-mob .vz-hint{position:relative;left:auto;bottom:auto;transform:none;margin-top:6px;text-align:center;opacity:1}
+@media (prefers-reduced-motion:reduce){ .vz-c{transition:none} }
 </style>
 
-<section class="vo" id="works" aria-label="Portfolio">
-  <div class="vo-in">
-    <div class="vo-head">
-      <div class="vo-label"></div>
-      <h2 class="vo-title"></h2>
-      <p class="vo-lead"></p>
+<section class="vz" id="works" aria-label="Portfolio">
+  <div class="vz-pin">
+    <div class="vz-sticky">
+      <div class="vz-glow" aria-hidden="true"></div>
+      <div class="vz-label"></div>
+      <h2 class="vz-mt"></h2>
+      <div class="vz-w vz-w1" aria-hidden="true"></div>
+      <div class="vz-w vz-w2" aria-hidden="true"></div>
+      <p class="vz-sub"></p>
+      <div class="vz-scene"></div>
+      <p class="vz-hint"></p>
+      <div class="vz-info" aria-live="polite"></div>
     </div>
-  </div>
-  <div class="vo-stage" role="listbox" tabindex="0" aria-label="Portfolio"><div class="vo-floor"></div></div>
-  <p class="vo-hint"></p>
-  <div class="vo-in">
-    <div class="vo-info">
-      <button type="button" class="vo-nav vo-prev" aria-label="Prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-      <div class="vo-meta"></div>
-      <button type="button" class="vo-nav vo-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-    </div>
-    <div class="vo-navs"></div>
   </div>
 </section>
 
@@ -1643,36 +1620,25 @@ border:1px solid rgba(185,165,255,.16);background:radial-gradient(closest-side,r
      Тексты — в двух языках: uk и en.
      ================================================================= */
   var CONFIG = {
-    autoplay: 5,                                     // ← круг сам поворачивается каждые N секунд (0 — выключить)
     uk: {                                                                         // ← ИЗМЕНИТЬ
-      label: 'Роботи', title: 'Мої <em>проєкти</em>',
-      lead: 'Концепти й навчальні проєкти, зроблені з нуля. Кожен — живий сайт, який можна відкрити й погортати.',
-      hint: 'Потягніть або натисніть на сайт', open: 'Відкрити сайт ↗', badges: { concept: 'Концепт', pitch: 'Конкурсна робота' }
+      label: 'Роботи', w1: 'Мої', w2: '<em>проєкти</em>', title: 'Мої <em>проєкти</em>',
+      sub: 'Концепти й навчальні проєкти — живі сайти, які можна відкрити',
+      hint: 'Наведіть на картку · натисніть, щоб відкрити', hintMob: 'Натисніть на картку', open: 'Відкрити сайт ↗', badges: { concept: 'Концепт', pitch: 'Конкурсна робота' }
     },
     en: {                                                                         // ← ИЗМЕНИТЬ
-      label: 'Work', title: 'My <em>projects</em>',
-      lead: 'Concepts and study projects built from scratch. Each one is a live website you can open and scroll.',
-      hint: 'Drag or tap a website', open: 'Open site ↗', badges: { concept: 'Concept', pitch: 'Pitch project' }
+      label: 'Work', w1: 'My', w2: '<em>projects</em>', title: 'My <em>projects</em>',
+      sub: 'Concepts and study projects — live websites you can open',
+      hint: 'Hover a card · click to open', hintMob: 'Tap a card', open: 'Open site ↗', badges: { concept: 'Concept', pitch: 'Pitch project' }
     },
-
     /* ПРОЕКТЫ. image — ключ из VLAD_SHOTS (или ссылка на длинный скриншот), link — живой сайт.
-       badge — 'concept' (концепт), 'pitch' (конкурсна робота) или '' (реальний клієнт). */
+       badge — 'concept' (концепт), 'pitch' (конкурсна робота) или '' (реальний клієнт).
+       crops — какие места длинного скриншота показать на карточках (0 — верх, 1 — низ). */
     projects: [
-      { name: 'PADRE Barbershop', url: 'padre-barbershop', image: 'padre', link: 'https://gorgeous-cassata-2d0ce3.netlify.app/', badge: 'concept',
-        uk: { niche: 'Барбершоп · Одеса', desc: 'Сайт для барбершопу: підбір стрижки, послуги й ціни, майстри, фото до і після, відгуки та онлайн-запис.', tags: ['Багатосторінковий сайт', 'Онлайн-запис', 'Чорно-жовтий стиль'] },
-        en: { niche: 'Barbershop · Odesa', desc: 'A barbershop website: haircut finder, services and prices, barbers, before & after photos, reviews and online booking.', tags: ['Multi-page website', 'Online booking', 'Black & yellow style'] } },
-      { name: 'elladevil', url: 'elladevil', image: 'ella', link: 'https://timoshes229-beep.github.io/elladevil/', badge: 'concept',
-        uk: { niche: 'Біжутерія · Рига', desc: 'Лендинг для бренду біжутерії: перший екран із вау-ефектом, ціни в євро й доставка по всьому світу.', tags: ['Лендинг', 'Вау-перший екран', 'Ціни в €'] },
-        en: { niche: 'Jewelry · Riga', desc: 'A landing page for a jewelry brand: a wow first screen, prices in euros and worldwide shipping.', tags: ['Landing page', 'Wow first screen', 'Prices in €'] } },
-      { name: 'Synergy GK', url: 'synergy-gk', image: 'syn', link: 'https://timoshes229-beep.github.io/synergy-gk/', badge: 'concept',
-        uk: { niche: 'Воротарські рукавиці', desc: 'Інтернет-магазин воротарських рукавиць: каталог моделей, порівняння, підбір розміру за 10 секунд, міні-гра зі знижкою та доставка.', tags: ['Інтернет-магазин', 'Підбір розміру', 'Гейміфікація'] },
-        en: { niche: 'Goalkeeper gloves', desc: 'An online store for goalkeeper gloves: product catalog, comparison, a 10-second size finder, a discount mini-game and delivery.', tags: ['Online store', 'Size finder', 'Gamification'] } },
-      { name: 'Mareva Dental', url: 'mareva-dental', image: 'mareva', link: 'https://timoshes229-beep.github.io/mareva/', badge: 'concept',
-        uk: { niche: 'Стоматологія · Одеса', desc: 'Лендинг сімейної стоматології: 3D-модель імпланту, слайдер «до/після», калькулятор ціни з розстрочкою, квіз і міні-гра.', tags: ['Лендинг', '3D-імплант', 'Калькулятор ціни'] },
-        en: { niche: 'Dental clinic · Odesa', desc: 'A family dental clinic landing page: an interactive 3D implant, before/after slider, price calculator with installments, a quiz and a mini-game.', tags: ['Landing page', '3D implant', 'Price calculator'] } },
-      { name: 'Happy Finance', url: 'happy-finance', image: 'happy', link: 'https://timoshes229-beep.github.io/HAPPY-FINANCE/', badge: 'pitch',
-        uk: { niche: 'Бухгалтерія для ФОП і ТОВ', desc: 'Лендинг бухгалтерської компанії: послуги для ФОП і ТОВ, експрес-перевірка ризиків з оцінкою 0–100, податковий календар із відліком до дедлайну.', tags: ['Лендинг', 'Експрес-перевірка', 'Податковий календар'] },
-        en: { niche: 'Accounting for businesses', desc: 'An accounting firm landing page: services for sole proprietors and LLCs, a 0–100 risk check quiz and a tax calendar with a deadline countdown.', tags: ['Landing page', 'Risk check', 'Tax calendar'] } }
+      { name: 'PADRE Barbershop', image: 'padre', link: 'https://gorgeous-cassata-2d0ce3.netlify.app/', badge: 'concept', crops: [0, .38], uk: 'Барбершоп · Одеса', en: 'Barbershop · Odesa' },
+      { name: 'elladevil', image: 'ella', link: 'https://timoshes229-beep.github.io/elladevil/', badge: 'concept', crops: [0, .3], uk: 'Біжутерія · Рига', en: 'Jewelry · Riga' },
+      { name: 'Synergy GK', image: 'syn', link: 'https://timoshes229-beep.github.io/synergy-gk/', badge: 'concept', crops: [0, .22], uk: 'Воротарські рукавиці', en: 'Goalkeeper gloves' },
+      { name: 'Mareva Dental', image: 'mareva', link: 'https://timoshes229-beep.github.io/mareva/', badge: 'concept', crops: [0, .25], uk: 'Стоматологія · Одеса', en: 'Dental clinic · Odesa' },
+      { name: 'Happy Finance', image: 'happy', link: 'https://timoshes229-beep.github.io/HAPPY-FINANCE/', badge: 'pitch', crops: [0, .33], uk: 'Бухгалтерія для ФОП і ТОВ', en: 'Accounting for businesses' }
     ]
   };
   /* ======================= дальше можно не трогать ======================= */
@@ -1683,94 +1649,103 @@ border:1px solid rgba(185,165,255,.16);background:radial-gradient(closest-side,r
   var SH = window.VLAD_SHOTS || {};
   var lang = (window.VLAD_I18N && window.VLAD_I18N.lang) || 'uk';
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var P = CONFIG.projects, N = P.length, stage = q('.vo-stage');
+  var pin = q('.vz-pin'), st = q('.vz-sticky'), scene = q('.vz-scene'), w1 = q('.vz-w1'), w2 = q('.vz-w2'), sub = q('.vz-sub');
+  var P = CONFIG.projects;
 
-  var items = P.map(function (p, i) {
-    var el = document.createElement('div'); el.className = 'vo-item'; el.setAttribute('role', 'option');
-    el.innerHTML = '<div class="vo-win"><div class="vo-bar"><i></i><i></i><i></i><span>' + p.url + '</span></div><div class="vo-shot"><img alt="' + p.name + '" draggable="false" src="' +
-      (SH[p.image] || p.image) + '"><span class="vo-open"></span></div></div>';
-    stage.appendChild(el);
-    return el;
-  });
-
-  var pos = 0, target = 0, vel = 0, front = -1;
-  function wrap(i) { return ((i % N) + N) % N; }
-  function draw() {
-    var W = stage.clientWidth, H = stage.clientHeight, mob = W < 700;
-    var rx = mob ? W * .34 : Math.min(W * .37, 540), ry = mob ? 46 : Math.min(H * .2, 100);
-    items.forEach(function (el, i) {
-      var th = (i - pos) / N * Math.PI * 2, z = Math.cos(th), x = Math.sin(th) * rx;
-      var k = (z + 1) / 2, sc = .4 + .6 * Math.pow(k, 1.7);
-      el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + (-(1 - k) * ry * 2.2 + H * .04).toFixed(1) + 'px,0) translateY(-50%) scale(' + sc.toFixed(3) + ')';
-      el.style.opacity = (.28 + .72 * Math.pow(k, 1.4)).toFixed(3);
-      el.style.zIndex = Math.round(k * 100);
-      el.style.filter = k < .6 ? 'blur(' + ((.6 - k) * 4).toFixed(1) + 'px)' : 'none';
+  /* карточки: на компьютере по 2 на проект (разные места скриншота), на телефоне по одной */
+  var cards = [], mob = false, hot = -1, sel = -1;
+  function build() {
+    scene.innerHTML = ''; cards = [];
+    var per = mob ? 1 : 2, order = [];
+    for (var k = 0; k < per; k++) P.forEach(function (p, i) { order.push({ i: i, crop: p.crops[k] || 0 }); });
+    order.forEach(function (o, n) {
+      var p = P[o.i], el = document.createElement('div');
+      el.className = 'vz-c'; el.setAttribute('role', 'link'); el.setAttribute('aria-label', p.name);
+      el.style.backgroundImage = 'url("' + (SH[p.image] || p.image) + '")';
+      el.style.backgroundPosition = '50% ' + (o.crop * 100) + '%';
+      el.addEventListener('mouseenter', function () { if (!mob) { hot = n; info(o.i); } });
+      el.addEventListener('mouseleave', function () { if (!mob) hot = -1; });
+      el.addEventListener('click', function () {
+        if (mob && sel !== n) { sel = n; info(o.i); return; }
+        if (root.classList.contains('is-fan') || mob) window.open(p.link, '_blank', 'noopener');
+      });
+      scene.appendChild(el); cards.push({ el: el, i: o.i });
     });
-    var f = wrap(Math.round(pos));
-    if (f !== front) { front = f; items.forEach(function (el, i) { el.classList.toggle('is-front', i === f); }); info(true); }
+    if (mob) { sel = Math.floor(cards.length / 2); info(cards[sel].i); }
+    else info(cards[Math.floor(cards.length / 2)].i);
   }
-  function info(anim) {
-    var T = CONFIG[lang] || CONFIG.uk, p = P[front], t = p[lang] || p.uk, m = q('.vo-meta');
-    m.innerHTML = '<div class="vo-top"><span class="vo-num"><b>0' + (front + 1) + '</b> / 0' + N + '</span>' + (p.badge ? '<span class="vo-badge">' + T.badges[p.badge] + '</span>' : '') +
-      '<span class="vo-niche">' + t.niche + '</span></div><h3 class="vo-name">' + p.name + '</h3><p class="vo-desc">' + t.desc + '</p>' +
-      '<div class="vo-tags">' + t.tags.map(function (g) { return '<span>' + g + '</span>'; }).join('') + '</div>' +
-      '<a class="vo-go" href="' + p.link + '" target="_blank" rel="noopener">' + T.open + '</a>';
-    if (anim) { m.classList.remove('vo-swap'); void m.offsetWidth; m.classList.add('vo-swap'); }
+  function info(i) {
+    var T = CONFIG[lang] || CONFIG.uk, p = P[i];
+    q('.vz-info').innerHTML = '<b>' + p.name + '</b>' + (p.badge ? '<i>' + T.badges[p.badge] + '</i>' : '') + '<span>' + (p[lang] || p.uk) + '</span>' +
+      '<a href="' + p.link + '" target="_blank" rel="noopener">' + T.open + '</a>';
   }
   function render() {
     var T = CONFIG[lang] || CONFIG.uk;
-    q('.vo-label').textContent = T.label; q('.vo-title').innerHTML = T.title; q('.vo-lead').textContent = T.lead; q('.vo-hint').textContent = T.hint;
-    items.forEach(function (el) { el.querySelector('.vo-open').textContent = T.open; });
-    q('.vo-navs').innerHTML = q('.vo-prev').outerHTML + q('.vo-next').outerHTML;
-    if (front > -1) info(false);
+    q('.vz-label').textContent = T.label; q('.vz-mt').innerHTML = T.title;
+    w1.innerHTML = T.w1; w2.innerHTML = T.w2; sub.textContent = T.sub;
+    q('.vz-hint').textContent = mob ? T.hintMob : T.hint;
   }
 
-  /* движение: тянем, отпускаем — круг докатывается до ближайшего сайта */
-  var drag = null, idle = 0;
-  function go(t) { target = t; idle = performance.now(); }
-  function loop() {
-    if (!drag) {
-      var d = target - pos; pos += reduce ? d : d * .12;
-      if (Math.abs(d) < .0005) pos = target;
-    }
-    if (CONFIG.autoplay && !drag && !hover && performance.now() - idle > CONFIG.autoplay * 1000 && visible) go(Math.round(target) + 1);
-    draw(); requestAnimationFrame(loop);
+  function cl(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  var G = {};
+  function layout() {
+    var m = innerWidth < 760 || reduce;
+    if (m !== mob || !cards.length) { mob = m; root.classList.toggle('is-mob', mob); build(); render(); }
+    var W = st.clientWidth, H = mob ? 310 : st.clientHeight;
+    var cw = mob ? Math.min(W * .5, 220) : Math.min(W * .18, H * .38, 300);
+    G = { W: W, H: H, cw: cw };
+    root.style.setProperty('--cw', cw + 'px');
+    update();
   }
-  stage.addEventListener('pointerdown', function (e) {
-    drag = { x: e.clientX, p: pos, moved: 0, id: e.pointerId, el: e.target.closest('.vo-item') };
-    stage.classList.add('is-drag');
-  });
-  window.addEventListener('pointermove', function (e) {
-    if (!drag) return;
-    var dx = e.clientX - drag.x; drag.moved = Math.max(drag.moved, Math.abs(dx));
-    pos = drag.p - dx / (stage.clientWidth * .45) * (N / 2.5);
-  });
-  window.addEventListener('pointerup', function () {
-    if (!drag) return;
-    var d = drag; drag = null; stage.classList.remove('is-drag');
-    if (d.moved < 6 && d.el) {
-      var i = items.indexOf(d.el);
-      if (i === wrap(Math.round(pos))) { window.open(P[i].link, '_blank', 'noopener'); go(Math.round(pos)); return; }
-      var diff = wrap(i - Math.round(pos)); if (diff > N / 2) diff -= N;
-      go(Math.round(pos) + diff); return;
-    }
-    go(Math.round(pos));
-  });
-  var hover = false, visible = false;
-  stage.addEventListener('mouseenter', function () { hover = true; });
-  stage.addEventListener('mouseleave', function () { hover = false; idle = performance.now(); });
-  root.addEventListener('click', function (e) {
-    if (e.target.closest('.vo-prev')) go(Math.round(target) - 1);
-    if (e.target.closest('.vo-next')) go(Math.round(target) + 1);
-  });
-  stage.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); go(Math.round(target) - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); go(Math.round(target) + 1); }
-  });
-  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: .3 }).observe(stage);
 
-  window.addEventListener('vlad:lang', function (e) { lang = e.detail; render(); });
-  render(); idle = performance.now(); loop();
+  /* лента: карточки идут по 3D-волне; веер: карточки по дуге */
+  function ribbon(n, N, s) {
+    var u = (n - (N - 1) / 2) * 1.05 - s, a = u * .62;
+    return { x: u * G.cw * .98, y: Math.sin(a) * G.H * .16, z: Math.cos(a) * 160 - 220, rx: Math.cos(a) * 14, ry: -Math.sin(a) * 38, rz: Math.sin(a * .5) * 6, sc: 1 };
+  }
+  function fan(n, N) {
+    var spread = mob ? 46 : 80, ang = N > 1 ? (n / (N - 1) - .5) * spread : 0, R = mob ? G.W * .78 : Math.min(G.W * .52, G.H * 1.2);
+    var cy = mob ? G.H * .5 + R : G.H * .5 + R - G.H * .02, rad = ang * Math.PI / 180;
+    var lift = (mob ? n === sel : n === hot) ? 34 : 0;
+    return { x: Math.sin(rad) * (R + lift), y: cy - Math.cos(rad) * (R + lift) - G.H / 2, z: lift ? 60 : n * .5, rx: 0, ry: 0, rz: ang, sc: (mob ? n === sel : n === hot) ? 1.06 : .96 };
+  }
+  var cur = [];
+  function update() {
+    var N = cards.length; if (!N) return;
+    var p = 1;
+    if (!mob) { var r = pin.getBoundingClientRect(); p = cl(-r.top / Math.max(1, pin.offsetHeight - G.H)); }
+    /* заголовок: слова въезжают, потом уходят вверх и вниз */
+    if (!mob) {
+      var a = ease(cl(p / .16)), b = ease(cl((p - .58) / .22));
+      var W = G.W, H = G.H, x1 = W * .05, x2 = W - w2.offsetWidth - W * .05;
+      w1.style.transform = 'translate(' + lerp(-w1.offsetWidth - 40, x1, a).toFixed(1) + 'px,' + (H * (.24 - .34 * b)).toFixed(1) + 'px)';
+      w2.style.transform = 'translate(' + lerp(W + 40, x2, a).toFixed(1) + 'px,' + (H * (.6 + .45 * b)).toFixed(1) + 'px)';
+      w1.style.opacity = w2.style.opacity = (1 - b).toFixed(3);
+      sub.style.opacity = (a * (1 - b)).toFixed(3);
+    }
+    var t = mob ? 1 : ease(cl((p - .58) / .26)), s = mob ? 0 : lerp(-(N + 2) * .55, (N + 2) * .55, cl((p - .06) / .62));
+    root.classList.toggle('is-fan', t > .96);
+    cards.forEach(function (c, n) {
+      var tt = mob ? 1 : cl(t * 1.25 - (n % 5) * .05), A = ribbon(n, N, s), B = fan(n, N), k = ease(tt);
+      var o = {}; ['x', 'y', 'z', 'rx', 'ry', 'rz', 'sc'].forEach(function (key) { o[key] = lerp(A[key], B[key], k); });
+      var tgt = cur[n] || o;
+      if (root.classList.contains('is-fan') || mob) ['x', 'y', 'sc'].forEach(function (key) { o[key] = tgt[key] + (o[key] - tgt[key]) * .25; });
+      cur[n] = o;
+      var vis = mob ? 1 : cl((p - .02) / .06);
+      c.el.style.transform = 'translate3d(' + o.x.toFixed(1) + 'px,' + o.y.toFixed(1) + 'px,' + o.z.toFixed(1) + 'px) rotateX(' + o.rx.toFixed(2) + 'deg) rotateY(' + o.ry.toFixed(2) + 'deg) rotateZ(' + o.rz.toFixed(2) + 'deg) scale(' + o.sc.toFixed(3) + ')';
+      c.el.style.opacity = vis;
+      c.el.style.zIndex = (mob ? (n === sel ? 50 : 10 + n) : (hot === n ? 99 : Math.round(o.z + 400)));
+      c.el.classList.toggle('is-hot', mob ? n === sel : n === hot);
+    });
+  }
+  function loop() { update(); requestAnimationFrame(loop); }
+
+  window.addEventListener('resize', layout);
+  window.addEventListener('vlad:lang', function (e) { lang = e.detail; render(); info(cards[mob ? sel : Math.floor(cards.length / 2)].i); });
+  layout();
+  requestAnimationFrame(loop);
 })();
 </script>
 

@@ -388,6 +388,7 @@ html[data-vtheme="dark"] .vh-photo-img{filter:brightness(.78) saturate(1.1)}
       titleWords: ['продають', 'вражають', 'працюють', 'ростуть'],   // ← ИЗМЕНИТЬ: слова, которые меняются
       snav: [ { text: 'Послуги', link: '#services' }, { text: 'Роботи', link: '#works' },
               { text: 'Процес', link: '#process' }, { text: 'FAQ', link: '#faq' }, { text: 'Контакти', link: '#contacts' } ],
+      snavExtra: [ { text: 'Без ризику', link: '#offer' }, { text: 'Про мене', link: '#about' } ],   // ← подписи в шапке телефона для блоков без пункта меню
       snavCta: 'Написати',
       subtitle: 'Я <b>Влад</b> — роблю лендинги, багатосторінкові сайти та інтернет-магазини з дизайном під ваш бренд. Красиво, швидко й ідеально на телефоні.',
       buttonMain: 'Обговорити проєкт',
@@ -406,6 +407,7 @@ html[data-vtheme="dark"] .vh-photo-img{filter:brightness(.78) saturate(1.1)}
       titleWords: ['sell', 'impress', 'convert', 'grow'],           // ← ИЗМЕНИТЬ
       snav: [ { text: 'Services', link: '#services' }, { text: 'Work', link: '#works' },
               { text: 'Process', link: '#process' }, { text: 'FAQ', link: '#faq' }, { text: 'Contact', link: '#contacts' } ],
+      snavExtra: [ { text: 'Zero risk', link: '#offer' }, { text: 'About', link: '#about' } ],
       snavCta: 'Message me',
       subtitle: 'I’m <b>Vlad</b> — I build landing pages, multi-page websites and online stores designed around your brand. Beautiful, fast and perfect on mobile.',
       buttonMain: 'Discuss a project',
@@ -742,21 +744,29 @@ snav.innerHTML = '<a class="vh-snav-logo" href="#vh-hero">' + CONFIG.logo.text +
 '<div class="vh-snav-links"><span class="vh-snav-pill"></span>' + T.snav.map(function (m) { return '<a href="' + m.link + '">' + m.text + '</a>'; }).join('') + '</div>' +
 '<span class="vh-snav-cur"></span>' +
 '<a class="vh-snav-cta" href="' + CONFIG.telegram + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.4 4.3L2.9 11.4c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5zM9.9 14.6l-.4 4-1.4-4.6 10.5-6.6c.5-.3.9-.1.5.2z"/></svg><span>' + T.snavCta + '</span></a>';
-snavActive = ''; spy();
+snavActive = ''; snavCurHtml = ''; spy();
 };
+var snavCurHtml = '';
 var spy = function () {
 var T = CONFIG[VL.lang] || CONFIG.uk, line = window.innerHeight * 0.42, act = '', idx = -1;
 T.snav.forEach(function (m, i) { var el = document.getElementById(m.link.slice(1)); if (el && el.getBoundingClientRect().top <= line) { act = m.link; idx = i; } });
+/* подпись текущего блока: все блоки по порядку на странице, включая те, что без пункта меню */
+var all = T.snav.concat(T.snavExtra || []).map(function (m) { return { m: m, el: document.getElementById(m.link.slice(1)) }; }).filter(function (o) { return o.el; });
+all.sort(function (a, b) { return a.el.getBoundingClientRect().top - b.el.getBoundingClientRect().top; });
+var cur = null, ci = -1;
+all.forEach(function (o, i) { if (o.el.getBoundingClientRect().top <= line) { cur = o.m; ci = i; } });
+var curHtml = cur ? '<b>' + (ci < 9 ? '0' : '') + (ci + 1) + '</b>' + cur.text : '';
+if (curHtml !== snavCurHtml) { snavCurHtml = curHtml; snav.querySelector('.vh-snav-cur').innerHTML = curHtml; }
 snav.classList.toggle('is-on', window.scrollY > root.offsetHeight * 0.65);
 if (act === snavActive) return; snavActive = act;
 var links = snav.querySelectorAll('.vh-snav-links a'), pill = snav.querySelector('.vh-snav-pill'), a = null;
 links.forEach(function (l) { var on = l.getAttribute('href') === act; l.classList.toggle('is-on', on); if (on) a = l; });
 if (a) { pill.style.opacity = 1; pill.style.width = a.offsetWidth + 'px'; pill.style.transform = 'translateX(' + a.offsetLeft + 'px)'; } else pill.style.opacity = 0;
-snav.querySelector('.vh-snav-cur').innerHTML = idx > -1 ? '<b>' + (idx < 9 ? '0' : '') + (idx + 1) + '</b>' + T.snav[idx].text : '';
+
 };
 var sTick = false;
 window.addEventListener('scroll', function () { if (!sTick) { sTick = true; requestAnimationFrame(function () { sTick = false; spy(); }); } }, { passive: true });
-window.addEventListener('resize', function () { snavActive = ''; spy(); });
+window.addEventListener('resize', function () { snavActive = ''; snavCurHtml = ''; spy(); });
 window.addEventListener('vlad:lang', drawSnav);
 snav.addEventListener('click', function (e) {
 var a = e.target.closest('a[href^="#"]'); if (!a) return;
@@ -789,6 +799,29 @@ flow(true);
 }
 render(VL.lang);
 setBg(CONFIG.background);
+/* ссылки-якоря по всей странице: своя плавная прокрутка — Safari на iPhone обрывает встроенную на длинной странице */
+if (!window.VLAD_GO) {
+window.VLAD_GO = function (t) {
+var y0 = window.scrollY, y1 = Math.max(0, t.getBoundingClientRect().top + y0), dist = y1 - y0;
+if (matchMedia('(prefers-reduced-motion: reduce)').matches || Math.abs(dist) < 2) { window.scrollTo(0, y1); return; }
+var dur = Math.min(1400, 450 + Math.abs(dist) * .12), t0 = 0, stop = false;
+var cancel = function () { stop = true; };
+['wheel', 'touchstart'].forEach(function (ev) { window.addEventListener(ev, cancel, { passive: true, once: true }); });
+var step = function (now) {
+if (stop) return; if (!t0) t0 = now;
+var k = Math.min(1, (now - t0) / dur), e2 = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+window.scrollTo(0, y0 + dist * e2);
+if (k < 1) requestAnimationFrame(step);
+};
+requestAnimationFrame(step);
+};
+document.addEventListener('click', function (e) {
+var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+var id = a.getAttribute('href').slice(1); if (!id) return;
+var t = document.getElementById(id); if (!t) return;
+e.preventDefault(); e.stopPropagation(); window.VLAD_GO(t);
+}, true);
+}
 root.addEventListener('click', function (e) {
 var a = e.target.closest('a[href^="#"]');
 if (!a) return;
@@ -981,7 +1014,8 @@ font-size:11.5px;font-weight:700;letter-spacing:.12em;line-height:1.5;text-trans
 -webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
 
 /* ноутбук */
-.vl-laptop{position:absolute;z-index:2;opacity:0;will-change:transform}
+.vl-laptop{position:absolute;z-index:2;opacity:0;will-change:transform;pointer-events:none}
+.vl-screen.is-live{pointer-events:auto}
 .vl-screen{position:relative;width:100%;border:10px solid #050507;border-radius:calc(var(--w,800px) * .024);overflow:hidden;background:transparent;
 box-shadow:0 0 0 1.5px #2a2b30,0 0 0 3px #b8b9c0,0 0 0 4px #7d7e86,0 70px 120px -50px var(--shadow)}
 .vl-screen::before{content:'';position:absolute;left:50%;top:0;z-index:6;width:calc(var(--w,800px) * .1);height:calc(var(--w,800px) * .016);margin-left:calc(var(--w,800px) * -.05);
@@ -3461,7 +3495,7 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
 
   // плавная прокрутка по якорям + «Нагору»
   root.addEventListener('click', function (e) {
-    if (e.target.closest('.vf-up')) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    if (e.target.closest('.vf-up')) { if (window.VLAD_GO) window.VLAD_GO(document.documentElement); else window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
     var a = e.target.closest('a[href^="#"]'); if (!a) return;
     var id = a.getAttribute('href').slice(1);
     var t = id && (document.getElementById(id) || document.querySelector('[name="' + id + '"]'));
@@ -3506,5 +3540,11 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
 })();
 </script>
 
+<style>
+/* телефон: промежутки между блоками поменьше  ← ИЗМЕНИТЬ */
+@media (max-width:600px){
+  #services.vt,#process.vm,#offer.vg,#about.va,#faq.vq{padding-top:60px;padding-bottom:56px}
+}
+</style>
 </body>
 </html>

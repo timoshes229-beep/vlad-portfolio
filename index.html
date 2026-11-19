@@ -2425,7 +2425,7 @@ html[data-vtheme="dark"] .va{--bg:#0e0b16;--fg:#f1eeff;--muted:#a19cb3;--ac:#8f6
      Тексты — в двух языках: uk и en. Цвета — в начале <style>.
      ================================================================= */
   var CONFIG = {
-    photo: 'img/hero-1.webp',                        // ← ИЗМЕНИТЬ: ссылка на твоё фото (квадратное). Пусто — буква в фигуре
+    photo: 'img/v-logo.webp',                        // ← ИЗМЕНИТЬ: ссылка на твоё фото (квадратное). Пусто — буква в фигуре
     tools: ['Tilda', 'HTML / CSS / JS', 'GitHub Pages', 'Netlify'],  // ← ИЗМЕНИТЬ: общие для обоих языков инструменты
     /* Счётчики: value — число (докручивается), suffix — после числа. Подписи — в uk / en. */
     stats: [ { value: 1, suffix: '' }, { value: 100, suffix: '%' }, { value: 7, suffix: '' }, { value: 24, suffix: '/7' } ],
@@ -3546,5 +3546,88 @@ html[data-vtheme="dark"] .vf,html[data-vtheme="dark"] .vf-float,html[data-vtheme
   #services.vt,#process.vm,#offer.vg,#about.va,#faq.vq{padding-top:60px;padding-bottom:56px}
 }
 </style>
+
+<!-- ==================================================================
+     ВЛАД · ЖИВЫЕ КАРТОЧКИ НА ОБЛОЖКЕ + 3D-БУКВА V В «ПРО МЕНЕ»
+     Карточки в колесе: при наведении выезжают, сайт внутри прокручивается, клик открывает сайт.
+     На телефоне сама прокручивается карточка, которая сейчас наверху колеса.
+     Ссылки на сайты — в SITES ниже.  ← ИЗМЕНИТЬ
+     ================================================================== -->
+<style>
+#intro .vl-pitch,#intro .vl-btns{pointer-events:none}
+#intro .vl-btn{pointer-events:auto}
+.wh-c{pointer-events:auto;cursor:pointer;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,border-color .45s}
+@media (hover:hover){
+  .wh-c:hover{z-index:5;border-color:#7a52ff;box-shadow:0 40px 80px -20px rgba(106,61,255,.7);
+    transform:rotate(var(--a)) translateY(calc(min(36cqw,58cqh) * -1 - 4cqh)) scale(1.35);animation:lc-scroll 8s ease-in-out .3s infinite}
+  .wh-spin:has(.wh-c:hover){animation-play-state:paused}
+  .wh-c:hover .lc-tag{display:flex}
+}
+.wh-c .lc-tag{all:initial;position:absolute;left:6px;right:6px;bottom:6px;display:none;flex-direction:column;align-items:center;gap:1px;padding:4px 6px;border-radius:9px;
+  background:rgba(17,14,30,.86);color:#fff;font:700 7.5px/1.25 Manrope,sans-serif;text-align:center}
+.wh-c .lc-tag *{all:unset;display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wh-c .lc-tag i{color:#b9a3ff;font-weight:600}
+@keyframes lc-scroll{0%,8%{background-position:50% 0}50%,58%{background-position:50% 100%}100%{background-position:50% 0}}
+.vl.is-mob .wh-c.lc-top{z-index:5;border-color:#7a52ff;animation:lc-scroll 8s ease-in-out infinite}
+.vl.is-mob .wh-c.lc-top .lc-tag{display:flex}
+
+/* 3D-буква V в «Про мене» */
+#about .va-blob{perspective:600px;background:radial-gradient(circle at 50% 45%,#2a1560,#0f0d1a 72%);box-shadow:0 0 60px -10px rgba(122,82,255,.6)}
+#about .va-blob img{mix-blend-mode:screen;animation:lc-float 6s ease-in-out infinite;transition:transform .25s ease-out}
+#about .va-blob .lc-shine{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;
+  background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.9) 50%,transparent 62%);background-size:260% 100%;animation:lc-shine 4.5s ease-in-out infinite;
+  -webkit-mask:url(img/v-logo.webp) center/cover;mask:url(img/v-logo.webp) center/cover;mask-mode:luminance}
+@keyframes lc-float{0%,100%{translate:0 0;rotate:-2deg}50%{translate:0 -4%;rotate:2deg}}
+@keyframes lc-shine{0%,30%{background-position:120% 0}70%,100%{background-position:-60% 0}}
+@media (prefers-reduced-motion:reduce){ .wh-c,#about .va-blob img,#about .va-blob .lc-shine{animation:none!important} }
+</style>
+<script>
+(function () {
+  var SITES = {                                                     // ← ИЗМЕНИТЬ: картинка → [название, ссылка]
+    ella:   ['elladevil',        'https://timoshes229-beep.github.io/elladevil/'],
+    syn:    ['Synergy GK',       'https://timoshes229-beep.github.io/synergy-gk/'],
+    olya:   ['Blog Start',       'https://timoshes229-beep.github.io/olya/'],
+    padre:  ['PADRE Barbershop', 'https://gorgeous-cassata-2d0ce3.netlify.app/'],
+    vid:    ['ВІДЧИНЕНО',        'https://timoshes229-beep.github.io/vidchyneno/'],
+    mareva: ['Mareva Dental',    'https://timoshes229-beep.github.io/mareva/'],
+    happy:  ['Happy Finance',    'https://timoshes229-beep.github.io/HAPPY-FINANCE/']
+  };
+  var OPEN = { uk: 'Відкрити ↗\uFE0E', en: 'Open ↗\uFE0E' };
+  var intro = document.getElementById('intro'); if (!intro) return;
+  var SH = window.VLAD_SHOTS || {}, cards = intro.querySelectorAll('.wh-c');
+  var lang = function () { return (window.VLAD_I18N && window.VLAD_I18N.lang) || 'uk'; };
+
+  cards.forEach(function (c) {
+    var key = Object.keys(SH).find(function (k) { return c.style.backgroundImage.indexOf(SH[k]) > -1; });
+    var site = SITES[key]; if (!site) return;
+    c.insertAdjacentHTML('beforeend', '<span class="lc-tag"><b>' + site[0] + '</b><i>' + (OPEN[lang()] || OPEN.uk) + '</i></span>');
+    c.addEventListener('click', function () { window.open(site[1], '_blank', 'noopener'); });
+  });
+  window.addEventListener('vlad:lang', function (e) { intro.querySelectorAll('.lc-tag i').forEach(function (i) { i.textContent = OPEN[e.detail] || OPEN.uk; }); });
+
+  /* телефон: отмечаем карточку, которая сейчас ближе всего к верху колеса */
+  setInterval(function () {
+    if (!intro.classList.contains('is-mob')) return;
+    var r = intro.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+    var best = null, top = Infinity;
+    cards.forEach(function (c) { var y = c.getBoundingClientRect().top; if (y < top) { top = y; best = c; } });
+    cards.forEach(function (c) { c.classList.toggle('lc-top', c === best); });
+  }, 500);
+
+  /* буква V: блик и наклон за мышкой. Блок «Про мене» перерисовывается при смене языка, поэтому проверяем его регулярно */
+  function decorate() {
+    var blob = document.querySelector('#about .va-blob'), img = blob && blob.querySelector('img');
+    if (!img || blob.querySelector('.lc-shine')) return;
+    blob.insertAdjacentHTML('beforeend', '<span class="lc-shine"></span>');
+    var box = blob.parentNode;
+    box.addEventListener('mousemove', function (e) {
+      var r = box.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      img.style.transform = 'rotateY(' + x * 35 + 'deg) rotateX(' + -y * 35 + 'deg) scale(1.04)';
+    });
+    box.addEventListener('mouseleave', function () { img.style.transform = ''; });
+  }
+  decorate(); setInterval(decorate, 600);
+})();
+</script>
 </body>
 </html>
